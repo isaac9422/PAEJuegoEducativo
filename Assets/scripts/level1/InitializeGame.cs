@@ -13,11 +13,12 @@ public class InitializeGame : MonoBehaviour
 		public Image[] progress = new Image[3];
 		public bool win=false;
 		private int correctAnswer;
-		private bool reinforce;
-		public Animator bun;
-		public List<Categoria> categorias;
-		public Text textoCategoria;
-		public Text textoPalabra;
+		// private bool reinforce;
+		private Animator bun;
+		private List<Categoria> categorias;
+		private Text textoCategoria;
+		private Text textoPalabra;
+		private AudioSource audioSource;
 		Categoria categoria;
 		Elemento elemento;
 		List<Elemento> elementos;
@@ -27,18 +28,18 @@ public class InitializeGame : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-				reinforce = false;
-				correctAnswer = 0;
-				bun = GameObject.Find("Bun").GetComponent<Animator>();
-				bun.gameObject.SetActive(false);
-				textoCategoria = GameObject.Find("TextCategory").GetComponent<Text>();
-				textoPalabra = GameObject.Find("TextPalabra").GetComponent<Text>();
-				createElements();
+			// reinforce = false;
+			correctAnswer = 0;
+			bun = GameObject.Find("Bun").GetComponent<Animator>();
+			bun.gameObject.SetActive(false);
+			textoCategoria = GameObject.Find("TextCategory").GetComponent<Text>();
+			textoPalabra = GameObject.Find("TextPalabra").GetComponent<Text>();
+			audioSource = GameObject.FindWithTag("Sonido").GetComponent<AudioSource>();
+			createElements();
 			int aleatorio = UnityEngine.Random.Range(0,categorias.Count);
 			textoCategoria.text = categorias[aleatorio].getNombre();
 			elementos = categorias[aleatorio].getElementos();
 			initaizeGame ();
-
 		}
 	
 		// Update is called once per frame
@@ -49,26 +50,7 @@ public class InitializeGame : MonoBehaviour
 
 		public void initaizeGame ()
 		{
-			int aleatorio = UnityEngine.Random.Range(0,elementos.Count);
-			elementoCorrecto = elementos[aleatorio];
-			elementosIncorrecto = new List<Elemento>();
-			for(int i = 0; i < elementos.Count;i++){
-				if(!elementos[i].getNombre().Equals(elementoCorrecto.getNombre())){
-						elementosIncorrecto.Add(elementos[i]);
-				}else{
-					textoPalabra.text = elementoCorrecto.getNombre();
-				}	
-			}
-			string ruta = "sounds/En-us-";
-			ruta += elementoCorrecto.getNombre().ToLower();
-			AudioClip audioClip = (AudioClip) Resources.Load(ruta,typeof(AudioClip));
-			AudioSource audio = GameObject.FindWithTag("Sonido").GetComponent<AudioSource>();
-			if(audioClip == null){
-					Debug.Log("Null");
-			}else{
-				audio.clip = audioClip;
-				audio.Play();
-			}
+			selectCorrect();
 			
 			int ran = Random.Range (0, 3);
 			int incorrect = 0;
@@ -86,28 +68,41 @@ public class InitializeGame : MonoBehaviour
 
 		public void addCorrectAnswer ()
 		{
-				if (reinforce == false) {				
-					progress [correctAnswer].color = new Color (0, 12, 255, 255);
-					correctAnswer ++;
-					GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().initaizeGame ();
-				} else {
-					reinforce = false;
+			// if (reinforce == false) {				
+			progress [correctAnswer].color = new Color (0, 12, 255, 255);
+			correctAnswer ++;
+			GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().initaizeGame ();
+			// } else {
+				// reinforce = false;
+			// }
+			if (correctAnswer == 3) {
+				win=true;
+				correctAnswer = 0;
+				bun.gameObject.SetActive(true);
+				GameObject.FindGameObjectWithTag("Bun").GetComponent<BunAnimation>().changeFace();
+				for (int i=0; i<3; i++) {
+						progress [i].color = new Color (0, 12, 255, 0);
 				}
-				if (correctAnswer == 3) {
-						win=true;
-						correctAnswer = 0;
-						bun.gameObject.SetActive(true);
-						GameObject.FindGameObjectWithTag("Bun").GetComponent<BunAnimation>().changeFace();
-						for (int i=0; i<3; i++) {
-								progress [i].color = new Color (0, 12, 255, 0);
-						}
-				}
+			}
 		}
 
 		public void reinforcePhase ()
 		{
-				reinforce = true;
-				GameObject.FindWithTag ("GameController").GetComponent<InitializeGame>().initaizeGame ();
+			// reinforce = true;
+			// GameObject.FindWithTag ("GameController").GetComponent<InitializeGame>().initaizeGame ();
+			audioSource.Play();
+			int ran = Random.Range (0, 3);
+			int incorrect = 0;
+			for (int i=0; i<3; i++) {
+				if (ran == i) {
+					items [i].tag = "Correcto";
+					items [i].image.sprite = correctImage;
+				} else {
+					items [i].tag = "Incorrecto";
+					items [i].image.sprite = incorrectImage [incorrect];
+					incorrect++;
+				}			
+			}
 		}
 
 	public void backToMenu(){
@@ -210,7 +205,28 @@ public class InitializeGame : MonoBehaviour
 			elemento = new Elemento("Bear");
 			elementos.Add(elemento);
 			categorias[4].setElementos(elementos);
-			elementos = new List<Elemento>();
+	}
+	
+	public void selectCorrect(){
+		int aleatorio = UnityEngine.Random.Range(0,elementos.Count);
+		elementoCorrecto = elementos[aleatorio];
+		elementosIncorrecto = new List<Elemento>();
+		for(int i = 0; i < elementos.Count;i++){
+			if(!elementos[i].getNombre().Equals(elementoCorrecto.getNombre())){
+					elementosIncorrecto.Add(elementos[i]);
+			}else{
+				textoPalabra.text = elementoCorrecto.getNombre();
+			}	
+		}
+		string ruta = "sounds/En-us-";
+		ruta += elementoCorrecto.getNombre().ToLower();
+		AudioClip audioClip = (AudioClip) Resources.Load(ruta,typeof(AudioClip));
+		if(audioClip == null){
+				Debug.Log("Null");
+		}else{
+			audioSource.clip = audioClip;
+			audioSource.Play();
+		}
 	}
 
 }

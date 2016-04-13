@@ -6,16 +6,14 @@ public class Elemento {
 
 	private string nombre;
 	private string figura;
-	private string sonido;
 	
 	public Elemento(){
 		
 	}
 	
 	public Elemento(string nombre){
-			this.nombre = nombre;
-			this.figura = "figura";
-			this.sonido = "sonido";
+		this.nombre = nombre;
+		this.figura = "figura";
 	}
 	
 	public string getNombre(){
@@ -32,13 +30,5 @@ public class Elemento {
 	
 	public void setFigura(string figura){
 		this.figura = figura;
-	}
-	
-	public string getSonido(){
-		return this.sonido;
-	}
-	
-	public void setSonido(string sonido){
-		this.sonido = sonido;
 	}
 }
