@@ -1,0 +1,1 @@
+Este é o repositório onde esta armazenado o desenvolvimento académico de um projeito estudiantil
