@@ -59,12 +59,9 @@ public class InitializeGame : MonoBehaviour
 					textoPalabra.text = elementoCorrecto.getNombre();
 				}	
 			}
-			// string ruta = "/Assets/sounds/En-us-";
-			string ruta = "En-us-";
+			string ruta = "sounds/En-us-";
 			ruta += elementoCorrecto.getNombre().ToLower();
-			AudioClip audioClip = (AudioClip) Resources.Load("",typeof(AudioClip));
-
-			// AudioClip clip = new AudioClip("A:/Jhunior/Universidad/XI Semestre/PAE - Pacho/PaeJuegoEducativo/Assets/sounds/En-us-dress.ogg");
+			AudioClip audioClip = (AudioClip) Resources.Load(ruta,typeof(AudioClip));
 			AudioSource audio = GameObject.FindWithTag("Sonido").GetComponent<AudioSource>();
 			if(audioClip == null){
 					Debug.Log("Null");

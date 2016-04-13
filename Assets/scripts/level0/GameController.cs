@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-				Debug.Log("Daño");
+
 		}
 	
 		// Update is called once per frame
@@ -21,25 +21,12 @@ public class GameController : MonoBehaviour
 
 		public void loadlevel (int i)
 		{
-				Debug.Log("Entro");
-				Debug.Log(i);
-				if (i > 0) {
-						// Application.LoadLevel (i);
-						SceneManager.LoadScene (i);
-				} else if (i == -1) {
-						Application.Quit();
-				}
+			if (i > 0) {
+					// Application.LoadLevel (i);
+					SceneManager.LoadScene (i);
+			} else if (i == -1) {
+					Application.Quit();
+			}
 		}
 
-		public void loadLivel (int i)
-		{
-				Debug.Log("Entro");
-				Debug.Log(i);
-				if (i > 0) {
-						// Application.LoadLevel (i);
-						SceneManager.LoadScene (i);
-				} else if (i == -1) {
-						Application.Quit();
-				}
-		}
 }
