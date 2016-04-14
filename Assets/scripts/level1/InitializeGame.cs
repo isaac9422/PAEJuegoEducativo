@@ -146,7 +146,7 @@ public class InitializeGame : MonoBehaviour
 			elementos.Add(elemento);
 			elemento = new Elemento("Train");
 			elementos.Add(elemento);
-			elemento = new Elemento("Moto");
+			elemento = new Elemento("Motorbike");
 			elementos.Add(elemento);
 			elemento = new Elemento("Car");
 			elementos.Add(elemento);
@@ -201,6 +201,8 @@ public class InitializeGame : MonoBehaviour
 			elemento = new Elemento("Tiger");
 			elementos.Add(elemento);
 			elemento = new Elemento("Fox");
+			elementos.Add(elemento);
+			elemento = new Elemento("Elephant");
 			elementos.Add(elemento);
 			elemento = new Elemento("Bear");
 			elementos.Add(elemento);
