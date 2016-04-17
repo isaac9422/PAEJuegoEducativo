@@ -59,7 +59,7 @@
      <Compile Include="Assets\scripts\level3\Game__Controller.cs" />
      <Compile Include="Assets\scripts\level3\Item.cs" />
      <Compile Include="Assets\scripts\level3\MoveItem.cs" />
-     <None Include="Assets\sprites\SiteDownload.txt" />
+     <None Include="Assets\Resources\images\zSiteDownload.txt" />
      <None Include="Assets\Resources\sounds\siteDownloads.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
