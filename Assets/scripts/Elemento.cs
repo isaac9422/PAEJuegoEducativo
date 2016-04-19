@@ -5,7 +5,6 @@ using System.Collections;
 public class Elemento {
 
 	private string nombre;
-	private string figura;
 	
 	public Elemento(){
 		
@@ -13,7 +12,6 @@ public class Elemento {
 	
 	public Elemento(string nombre){
 		this.nombre = nombre;
-		this.figura = "figura";
 	}
 	
 	public string getNombre(){
@@ -22,13 +20,5 @@ public class Elemento {
 	
 	public void setNombre(string nombre){
 		this.nombre = nombre;
-	}
-	
-	public string getFigura(){
-		return this.figura;
-	}
-	
-	public void setFigura(string figura){
-		this.figura = figura;
 	}
 }

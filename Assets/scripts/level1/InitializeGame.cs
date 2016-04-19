@@ -24,6 +24,7 @@ public class InitializeGame : MonoBehaviour
 	private List<Elemento> elementos;
 	private Elemento elementoCorrecto;
 	private List<Elemento> elementosIncorrecto;
+	private List<string> correctsAnswer;
 	
 	// Use this for initialization
 	void Start ()
@@ -41,6 +42,7 @@ public class InitializeGame : MonoBehaviour
 		int aleatorio = UnityEngine.Random.Range(0,categorias.Count);
 		textoCategoria.text = categorias[aleatorio].getNombre();
 		elementos = categorias[aleatorio].getElementos();
+		correctsAnswer = new List<string>();
 		initaizeGame ();
 	}
 	
@@ -52,31 +54,9 @@ public class InitializeGame : MonoBehaviour
 
 	public void initaizeGame ()
 	{
-		selectCorrect();
-		
-		loadImages();
-		
+		selectCorrect();		
+		loadImages();		
 		establishCorrectButton();
-	}
-
-	public void addCorrectAnswer ()
-	{
-		// if (reinforce == false) {				
-		progress [correctAnswer].color = new Color (0, 12, 255, 255);
-		correctAnswer ++;
-		GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().initaizeGame ();
-		// } else {
-			// reinforce = false;
-		// }
-		if (correctAnswer == 3) {
-			win=true;
-			correctAnswer = 0;
-			bun.gameObject.SetActive(true);
-			GameObject.FindGameObjectWithTag("Bun").GetComponent<BunAnimation>().changeFace();
-			for (int i=0; i<3; i++) {
-					progress [i].color = new Color (0, 12, 255, 0);
-			}
-		}
 	}
 
 	public void reinforcePhase ()
@@ -85,6 +65,32 @@ public class InitializeGame : MonoBehaviour
 		audioSource.Play();
 		establishCorrectButton();
 	}
+	
+	public void rewardPhase(){
+		rewardCorrect();
+		loadImages();
+		establishCorrectButton();
+	}
+
+	public void addCorrectAnswer ()
+	{
+		if (correctAnswer == 2) {
+			progress [correctAnswer++].color = new Color (0, 12, 255, 255);
+			GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().rewardPhase();
+		}else if(correctAnswer == 3){
+			win=true;
+			correctAnswer = 0;
+			bun.gameObject.SetActive(true);
+			GameObject.FindGameObjectWithTag("Bun").GetComponent<BunAnimation>().changeFace();
+			for (int i=0; i<3; i++) {
+					// progress [i].color = new Color (0, 12, 255, 0);
+			}	
+		}
+		else{				
+			progress [correctAnswer++].color = new Color (0, 12, 255, 255);
+			GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().initaizeGame ();
+		}
+	}
 
 	public void backToMenu(){
 		SceneManager.LoadScene (0);
@@ -92,7 +98,6 @@ public class InitializeGame : MonoBehaviour
 	
 	public void createElements(){
 
-		elementos = new List<Elemento>();
 		//Creation for categories
 		categorias = new List<Categoria>();
 		categoria = new Categoria("Fruit");
@@ -107,6 +112,7 @@ public class InitializeGame : MonoBehaviour
 		categorias.Add(categoria);
 		
 		//Creation elemento for Fruit's category
+		elementos = new List<Elemento>();
 		elemento = new Elemento("Orange");
 		elementos.Add(elemento);
 		elemento = new Elemento("Apple");
@@ -120,10 +126,9 @@ public class InitializeGame : MonoBehaviour
 		elemento = new Elemento("Berry");
 		elementos.Add(elemento);
 		categorias[0].setElementos(elementos);
-		//elementos.Clear();
-		elementos = new List<Elemento>();
 		
 		//Creation elemento for Transport's category
+		elementos = new List<Elemento>();
 		elemento = new Elemento("Boat");
 		elementos.Add(elemento);
 		elemento = new Elemento("Train");
@@ -139,9 +144,9 @@ public class InitializeGame : MonoBehaviour
 		elemento = new Elemento("Helicopter");
 		elementos.Add(elemento);
 		categorias[1].setElementos(elementos);
-		elementos = new List<Elemento>();
 		
 		//Creation elemento for Clothe's category
+		elementos = new List<Elemento>();
 		elemento = new Elemento("Dress");
 		elementos.Add(elemento);
 		elemento = new Elemento("Shoe");
@@ -155,9 +160,9 @@ public class InitializeGame : MonoBehaviour
 		elemento = new Elemento("Sock");
 		elementos.Add(elemento);
 		categorias[2].setElementos(elementos);
-		elementos = new List<Elemento>();
 		
 		//Creation elemento for Domestic's category
+		elementos = new List<Elemento>();
 		elemento = new Elemento("Cat");
 		elementos.Add(elemento);
 		elemento = new Elemento("Horse");
@@ -171,9 +176,9 @@ public class InitializeGame : MonoBehaviour
 		elemento = new Elemento("Monkey");
 		elementos.Add(elemento);
 		categorias[3].setElementos(elementos);
-		elementos = new List<Elemento>();
 		
 		//Creation elemento for Foreign's category
+		elementos = new List<Elemento>();
 		elemento = new Elemento("Snake");
 		elementos.Add(elemento);
 		elemento = new Elemento("Shark");
@@ -192,18 +197,43 @@ public class InitializeGame : MonoBehaviour
 	}
 	
 	public void selectCorrect(){
-		int aleatorio = UnityEngine.Random.Range(0,elementos.Count);
+		int aleatorio = Random.Range(0,elementos.Count);
 		elementoCorrecto = elementos[aleatorio];
 		elementosIncorrecto = new List<Elemento>();
+		string correctWord = elementoCorrecto.getNombre();
 		for(int i = 0; i < elementos.Count;i++){
-			if(!elementos[i].getNombre().Equals(elementoCorrecto.getNombre())){
+			if(!elementos[i].getNombre().Equals(correctWord)){
 					elementosIncorrecto.Add(elementos[i]);
 			}else{
-				textoPalabra.text = elementoCorrecto.getNombre();
+				textoPalabra.text = correctWord;
+				correctsAnswer.Add(correctWord);
 			}	
 		}
 		string ruta = "sounds/En-us-";
-		ruta += elementoCorrecto.getNombre().ToLower();
+		ruta += correctWord.ToLower();
+		AudioClip audioClip = (AudioClip) Resources.Load(ruta,typeof(AudioClip));
+		if(audioClip == null){
+				Debug.Log("Null");
+		}else{
+			audioSource.clip = audioClip;
+			audioSource.Play();
+		}
+	}
+	
+	public void rewardCorrect(){
+		int aleatorio = Random.Range(0,correctsAnswer.Count);
+		elementosIncorrecto = new List<Elemento>();
+		string correctWord = correctsAnswer[aleatorio];
+		for(int i = 0; i < elementos.Count;i++){
+			if(!elementos[i].getNombre().Equals(correctWord)){
+					elementosIncorrecto.Add(elementos[i]);
+			}else{
+				textoPalabra.text = correctWord;
+				elementoCorrecto = elementos[i];
+			}	
+		}
+		string ruta = "sounds/En-us-";
+		ruta += correctWord.ToLower();
 		AudioClip audioClip = (AudioClip) Resources.Load(ruta,typeof(AudioClip));
 		if(audioClip == null){
 				Debug.Log("Null");
@@ -240,8 +270,7 @@ public class InitializeGame : MonoBehaviour
 				items [i].image.sprite = correctImage;
 			} else {
 				items [i].tag = "Incorrecto";
-				items [i].image.sprite = incorrectImage [incorrect];
-				incorrect++;
+				items [i].image.sprite = incorrectImage [incorrect++];
 			}			
 		}
 	}
