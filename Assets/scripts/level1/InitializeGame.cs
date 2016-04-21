@@ -313,8 +313,6 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Hockey");
 		elementos.Add(elemento);
-		elemento = new Elemento("Cycling");
-		elementos.Add(elemento);
 		elemento = new Elemento("Judo");
 		elementos.Add(elemento);
 		elemento = new Elemento("Hurdles");
@@ -343,7 +341,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Printer");
 		elementos.Add(elemento);
-		elemento = new Elemento("Headphone");
+		elemento = new Elemento("Headphones");
 		elementos.Add(elemento);
 		elemento = new Elemento("Videogame");
 		elementos.Add(elemento);
@@ -401,7 +399,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Sofa");
 		elementos.Add(elemento);
-		elemento = new Elemento("Tothbrush");
+		elemento = new Elemento("Toothbrush");
 		elementos.Add(elemento);
 		elemento = new Elemento("Toothpaste");
 		elementos.Add(elemento);
@@ -419,7 +417,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Airport");
 		elementos.Add(elemento);
-		elemento = new Elemento("Train station");
+		elemento = new Elemento("Gas station");
 		elementos.Add(elemento);
 		elemento = new Elemento("School");
 		elementos.Add(elemento);
