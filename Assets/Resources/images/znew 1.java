@@ -1,0 +1,363 @@
+		String elemento;
+		ArrayList<String> elementos;
+		String page;
+		Iterator<String> nombreIterator;
+		elementos = new ArrayList<String>();
+		elemento = new String("Orange");
+		elementos.add(elemento);
+		elemento = new String("Apple");
+		elementos.add(elemento);
+		elemento = new String("Pineapple");
+		elementos.add(elemento);
+		elemento = new String("Grape");
+		elementos.add(elemento);
+		elemento = new String("Pear");
+		elementos.add(elemento);
+		elemento = new String("Berry");
+		elementos.add(elemento);
+		elemento = new String("Avocado");
+		elementos.add(elemento);
+		elemento = new String("Lemon");
+		elementos.add(elemento);
+		elemento = new String("Banana");
+		elementos.add(elemento);
+		elemento = new String("Watermelon");
+		elementos.add(elemento);
+		elemento = new String("Coconut");
+		elementos.add(elemento);
+		elemento = new String("Cherry");
+		elementos.add(elemento);
+		elemento = new String("Mango");
+		elementos.add(elemento);
+		elemento = new String("Melon");
+		elementos.add(elemento);
+		elemento = new String("Papaya");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		} 
+		
+		//Creation elemento for Transport's category
+		elementos = new ArrayList<String>();
+		elemento = new String("Boat");
+		elementos.add(elemento);
+		elemento = new String("Train");
+		elementos.add(elemento);
+		elemento = new String("Motorbike");
+		elementos.add(elemento);
+		elemento = new String("Car");
+		elementos.add(elemento);
+		elemento = new String("Bus");
+		elementos.add(elemento);
+		elemento = new String("Airplane");
+		elementos.add(elemento);
+		elemento = new String("Helicopter");
+		elementos.add(elemento);
+		elemento = new String("Bike");
+		elementos.add(elemento);
+		elemento = new String("Taxi");
+		elementos.add(elemento);
+		elemento = new String("Truck");
+		elementos.add(elemento);
+		elemento = new String("Tractor");
+		elementos.add(elemento);
+		elemento = new String("Balloon");
+		elementos.add(elemento);
+		elemento = new String("Trycicle");
+		elementos.add(elemento);
+		elemento = new String("Skateboard");
+		elementos.add(elemento);
+		elemento = new String("Shuttle");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		}
+				
+		//Creation elemento for Clothe's category
+		elementos = new ArrayList<String>();
+		elemento = new String("Dress");
+		elementos.add(elemento);
+		elemento = new String("Shoe");
+		elementos.add(elemento);
+		elemento = new String("Pant");
+		elementos.add(elemento);
+		elemento = new String("T-Shirt");
+		elementos.add(elemento);
+		elemento = new String("Hat");
+		elementos.add(elemento);
+		elemento = new String("Sock");
+		elementos.add(elemento);
+		elemento = new String("Jacket");
+		elementos.add(elemento);
+		elemento = new String("Bikini");
+		elementos.add(elemento);
+		elemento = new String("Skirt");
+		elementos.add(elemento);
+		elemento = new String("Overcoat");
+		elementos.add(elemento);
+		elemento = new String("Tie");
+		elementos.add(elemento);
+		elemento = new String("Gloves");
+		elementos.add(elemento);
+		elemento = new String("Glass");
+		elementos.add(elemento);
+		elemento = new String("Boots");
+		elementos.add(elemento);
+		elemento = new String("Scarf");
+		elementos.add(elemento);
+		elemento = new String("Bag");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		}
+		
+		//Creation elemento for Domestic's category
+		elementos = new ArrayList<String>();
+		elemento = new String("Cat");
+		elementos.add(elemento);
+		elemento = new String("Horse");
+		elementos.add(elemento);
+		elemento = new String("Dog");
+		elementos.add(elemento);
+		elemento = new String("Penguin");
+		elementos.add(elemento);
+		elemento = new String("Rabbit");
+		elementos.add(elemento);
+		elemento = new String("Monkey");
+		elementos.add(elemento);
+		elemento = new String("Pig");
+		elementos.add(elemento);
+		elemento = new String("Duck");
+		elementos.add(elemento);
+		elemento = new String("Bird");
+		elementos.add(elemento);
+		elemento = new String("Butterfly");
+		elementos.add(elemento);
+		elemento = new String("Chicken");
+		elementos.add(elemento);
+		elemento = new String("Frog");
+		elementos.add(elemento);
+		elemento = new String("Snail");
+		elementos.add(elemento);
+		elemento = new String("Fish");
+		elementos.add(elemento);
+		elemento = new String("Mouse");
+		elementos.add(elemento);
+		elemento = new String("Sheep");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		}
+		
+		//Creation elemento for Wild's category
+		elementos = new ArrayList<String>();
+		elemento = new String("Snake");
+		elementos.add(elemento);
+		elemento = new String("Shark");
+		elementos.add(elemento);
+		elemento = new String("Lion");
+		elementos.add(elemento);
+		elemento = new String("Tiger");
+		elementos.add(elemento);
+		elemento = new String("Fox");
+		elementos.add(elemento);
+		elemento = new String("Elephant");
+		elementos.add(elemento);
+		elemento = new String("Bear");
+		elementos.add(elemento);
+		elemento = new String("Giraffe");
+		elementos.add(elemento);
+		elemento = new String("Crocodile");
+		elementos.add(elemento);
+		elemento = new String("Spider");
+		elementos.add(elemento);
+		elemento = new String("Camel");
+		elementos.add(elemento);
+		elemento = new String("Bee");
+		elementos.add(elemento);
+		elemento = new String("Cow");
+		elementos.add(elemento);
+		elemento = new String("Tortoise");
+		elementos.add(elemento);
+		elemento = new String("Bat");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		}
+		
+		//Creation elemento for Sports's category
+		elementos = new ArrayList<String>();
+		elemento = new String("Soccer");
+		elementos.add(elemento);
+		elemento = new String("Basketball");
+		elementos.add(elemento);
+		elemento = new String("Tennis");
+		elementos.add(elemento);
+		elemento = new String("Skiing");
+		elementos.add(elemento);
+		elemento = new String("Golf");
+		elementos.add(elemento);
+		elemento = new String("Archery");
+		elementos.add(elemento);
+		elemento = new String("Baseball");
+		elementos.add(elemento);
+		elemento = new String("Windsurf");
+		elementos.add(elemento);
+		elemento = new String("Hockey");
+		elementos.add(elemento);
+		elemento = new String("Judo");
+		elementos.add(elemento);
+		elemento = new String("Hurdles");
+		elementos.add(elemento);
+		elemento = new String("Athletics");
+		elementos.add(elemento);
+		elemento = new String("Weightlifting");
+		elementos.add(elemento);
+		elemento = new String("Fencing");
+		elementos.add(elemento);
+		elemento = new String("Gymnastics");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		}
+		
+		//Creation elemento for Technology's category
+		elementos = new ArrayList<String>();
+		elemento = new String("Television");
+		elementos.add(elemento);
+		elemento = new String("Computer");
+		elementos.add(elemento);
+		elemento = new String("Tablet");
+		elementos.add(elemento);
+		elemento = new String("Cellphone");
+		elementos.add(elemento);
+		elemento = new String("Telephone");
+		elementos.add(elemento);
+		elemento = new String("Printer");
+		elementos.add(elemento);
+		elemento = new String("Headphone");
+		elementos.add(elemento);
+		elemento = new String("Videogame");
+		elementos.add(elemento);
+		elemento = new String("Camera");
+		elementos.add(elemento);
+		elemento = new String("Radio");
+		elementos.add(elemento);
+		elemento = new String("Stereo");
+		elementos.add(elemento);
+		elemento = new String("Refrigerator");
+		elementos.add(elemento);
+		elemento = new String("Toaster");
+		elementos.add(elemento);
+		elemento = new String("Kettle");
+		elementos.add(elemento);
+		elemento = new String("Washer");
+		elementos.add(elemento);
+		elemento = new String("Cooler");
+		elementos.add(elemento);
+		elemento = new String("Blender");
+		elementos.add(elemento);
+		elemento = new String("Oven");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		}
+		
+		//Creation elemento for House's category
+		elementos = new ArrayList<String>();
+		elemento = new String("Bed");
+		elementos.add(elemento);
+		elemento = new String("Chair");
+		elementos.add(elemento);
+		elemento = new String("Table");
+		elementos.add(elemento);
+		elemento = new String("Toilet");
+		elementos.add(elemento);
+		elemento = new String("Towel");
+		elementos.add(elemento);
+		elemento = new String("Bath");
+		elementos.add(elemento);
+		elemento = new String("Settee");
+		elementos.add(elemento);
+		elemento = new String("Bookshelf");
+		elementos.add(elemento);
+		elemento = new String("Lamp");
+		elementos.add(elemento);
+		elemento = new String("Cushion");
+		elementos.add(elemento);
+		elemento = new String("Candle");
+		elementos.add(elemento);
+		elemento = new String("Windows");
+		elementos.add(elemento);
+		elemento = new String("Door");
+		elementos.add(elemento);
+		elemento = new String("Stairs");
+		elementos.add(elemento);
+		elemento = new String("Sofa");
+		elementos.add(elemento);
+		elemento = new String("Tothbrush");
+		elementos.add(elemento);
+		elemento = new String("Toothpaste");
+		elementos.add(elemento);
+		elemento = new String("Broom");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		}
+		
+		//Creation elemento for Place's category
+		elementos = new ArrayList<String>();
+		elemento = new String("Park");
+		elementos.add(elemento);
+		elemento = new String("Hospital");
+		elementos.add(elemento);
+		elemento = new String("Bus stop");
+		elementos.add(elemento);
+		elemento = new String("Airport");
+		elementos.add(elemento);
+		elemento = new String("Train station");
+		elementos.add(elemento);
+		elemento = new String("School");
+		elementos.add(elemento);
+		elemento = new String("Library");
+		elementos.add(elemento);
+		elemento = new String("House");
+		elementos.add(elemento);
+		elemento = new String("Shop");
+		elementos.add(elemento);
+		elemento = new String("Supermarket");
+		elementos.add(elemento);
+		elemento = new String("Garden");
+		elementos.add(elemento);
+		elemento = new String("Garage");
+		elementos.add(elemento);
+		elemento = new String("Bank");
+		elementos.add(elemento);
+		elemento = new String("Castle");
+		elementos.add(elemento);
+		elemento = new String("Church");
+		elementos.add(elemento);
+		elemento = new String("Drugstore");
+		elementos.add(elemento);
+		nombreIterator = elementos.iterator();
+		while(nombreIterator.hasNext()){
+			page = nombreIterator.next();
+			System.out.println("<a href=\"http://www.free-icons-download.net/?s="+page.toLowerCase()+"\">"+page+"</a><br>");
+		}
+		
