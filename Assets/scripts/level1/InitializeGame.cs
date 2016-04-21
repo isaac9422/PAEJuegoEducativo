@@ -179,7 +179,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Balloon");
 		elementos.Add(elemento);
-		elemento = new Elemento("Trycicle");
+		elemento = new Elemento("Trycycle");
 		elementos.Add(elemento);
 		elemento = new Elemento("Skateboard");
 		elementos.Add(elemento);
