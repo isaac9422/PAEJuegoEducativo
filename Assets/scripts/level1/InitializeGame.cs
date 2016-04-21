@@ -405,7 +405,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Toothpaste");
 		elementos.Add(elemento);
-		elemento = new Elemento("Escoba");
+		elemento = new Elemento("Broom");
 		elementos.Add(elemento);
 		categorias[7].setElementos(elementos);
 		
@@ -435,13 +435,13 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Garage");
 		elementos.Add(elemento);
-		elemento = new Elemento("Athletics");
+		elemento = new Elemento("Bank");
 		elementos.Add(elemento);
-		elemento = new Elemento("Weightlifting");
+		elemento = new Elemento("Castle");
 		elementos.Add(elemento);
-		elemento = new Elemento("Fencing");
+		elemento = new Elemento("Church");
 		elementos.Add(elemento);
-		elemento = new Elemento("Gymnastics");
+		elemento = new Elemento("Drugstore");
 		elementos.Add(elemento);
 		categorias[8].setElementos(elementos);
 	}
