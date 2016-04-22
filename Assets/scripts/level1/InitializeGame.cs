@@ -147,7 +147,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Mango");
 		elementos.Add(elemento);
-		elemento = new Elemento("Melon");
+		elemento = new Elemento("Peach");
 		elementos.Add(elemento);
 		elemento = new Elemento("Papaya");
 		elementos.Add(elemento);
@@ -179,7 +179,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Balloon");
 		elementos.Add(elemento);
-		elemento = new Elemento("Trycycle");
+		elemento = new Elemento("Tricycle");
 		elementos.Add(elemento);
 		elemento = new Elemento("Skateboard");
 		elementos.Add(elemento);
@@ -203,7 +203,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Jacket");
 		elementos.Add(elemento);
-		elemento = new Elemento("Bikini");
+		elemento = new Elemento("Tennis");
 		elementos.Add(elemento);
 		elemento = new Elemento("Skirt");
 		elementos.Add(elemento);
