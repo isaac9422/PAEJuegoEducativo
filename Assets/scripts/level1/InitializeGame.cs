@@ -397,8 +397,6 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Stairs");
 		elementos.Add(elemento);
-		elemento = new Elemento("Sofa");
-		elementos.Add(elemento);
 		elemento = new Elemento("Toothbrush");
 		elementos.Add(elemento);
 		elemento = new Elemento("Toothpaste");
