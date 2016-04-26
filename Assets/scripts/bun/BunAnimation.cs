@@ -21,7 +21,7 @@ public class BunAnimation : MonoBehaviour {
 	IEnumerator chageFaceMethod() {
 		//bunAnimation.gameObject.SetActive(true);
 		bunAnimation.GetComponent<Animator>().SetBool ("Win", true);
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(1);
 		SceneManager.LoadScene(0);
 	}
 }
