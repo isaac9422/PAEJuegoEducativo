@@ -15,10 +15,10 @@ public class InitializeGame : MonoBehaviour
 	private int correctAnswer;
 	// private bool reinforce;
 	private Animator bun;
-	private List<Categoria> categorias;
 	private Text textoCategoria;
 	private Text textoPalabra;
 	private AudioSource audioSource;
+	private List<Categoria> categorias;
 	private Categoria categoria;
 	private Elemento elemento;
 	private List<Elemento> elementos;
@@ -36,7 +36,6 @@ public class InitializeGame : MonoBehaviour
 		textoCategoria = GameObject.Find("TextCategory").GetComponent<Text>();
 		textoPalabra = GameObject.Find("TextPalabra").GetComponent<Text>();
 		audioSource = GameObject.FindWithTag("Sonido").GetComponent<AudioSource>();
-		
 		createElements();
 		
 		int aleatorio = UnityEngine.Random.Range(0,categorias.Count);
@@ -118,10 +117,16 @@ public class InitializeGame : MonoBehaviour
 		categorias.Add(categoria);
 		categoria = new Categoria("Places");
 		categorias.Add(categoria);
+		categoria = new Categoria("Colours");
+		categorias.Add(categoria);
+		categoria = new Categoria("Musical");
+		categorias.Add(categoria);
+		categoria = new Categoria("Body");
+		categorias.Add(categoria);
 		
 		//Creation elemento for Fruit's category
 		elementos = new List<Elemento>();
-		elemento = new Elemento("Orange");
+		elemento = new Elemento("Oranges");
 		elementos.Add(elemento);
 		elemento = new Elemento("Apple");
 		elementos.Add(elemento);
@@ -220,6 +225,12 @@ public class InitializeGame : MonoBehaviour
 		elemento = new Elemento("Scarf");
 		elementos.Add(elemento);
 		elemento = new Elemento("Bag");
+		elementos.Add(elemento);
+		elemento = new Elemento("Watch");
+		elementos.Add(elemento);
+		elemento = new Elemento("Umbrella");
+		elementos.Add(elemento);
+		elemento = new Elemento("Belt");
 		elementos.Add(elemento);
 		categorias[2].setElementos(elementos);
 		
@@ -365,6 +376,8 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Oven");
 		elementos.Add(elemento);
+		elemento = new Elemento("Keyboard");
+		elementos.Add(elemento);
 		categorias[6].setElementos(elementos);
 		
 		//Creation elemento for House's category
@@ -403,11 +416,17 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Broom");
 		elementos.Add(elemento);
+		elemento = new Elemento("Book");
+		elementos.Add(elemento);
+		elemento = new Elemento("Keys");
+		elementos.Add(elemento);
 		categorias[7].setElementos(elementos);
 		
 		//Creation elemento for Place's category
 		elementos = new List<Elemento>();
 		elemento = new Elemento("Park");
+		elementos.Add(elemento);
+		elemento = new Elemento("Building");
 		elementos.Add(elemento);
 		elemento = new Elemento("Hospital");
 		elementos.Add(elemento);
@@ -440,6 +459,100 @@ public class InitializeGame : MonoBehaviour
 		elemento = new Elemento("Drugstore");
 		elementos.Add(elemento);
 		categorias[8].setElementos(elementos);
+		
+		//Creation elemento for Colour's category
+		elementos = new List<Elemento>();
+		elemento = new Elemento("Yellow");
+		elementos.Add(elemento);
+		elemento = new Elemento("Black");
+		elementos.Add(elemento);
+		elemento = new Elemento("Blue");
+		elementos.Add(elemento);
+		elemento = new Elemento("Red");
+		elementos.Add(elemento);
+		elemento = new Elemento("Purple");
+		elementos.Add(elemento);
+		elemento = new Elemento("Green");
+		elementos.Add(elemento);
+		elemento = new Elemento("Gray");
+		elementos.Add(elemento);
+		elemento = new Elemento("Pink");
+		elementos.Add(elemento);
+		elemento = new Elemento("Brown");
+		elementos.Add(elemento);
+		elemento = new Elemento("Violet");
+		elementos.Add(elemento);
+		elemento = new Elemento("Fuchsia");
+		elementos.Add(elemento);
+		elemento = new Elemento("White");
+		elementos.Add(elemento);
+		elemento = new Elemento("Orange");
+		elementos.Add(elemento);
+		categorias[9].setElementos(elementos);
+		
+		//Creation elemento for Musical's category
+		elementos = new List<Elemento>();
+		elemento = new Elemento("Guitar");
+		elementos.Add(elemento);
+		elemento = new Elemento("Clarinet");
+		elementos.Add(elemento);
+		elemento = new Elemento("Drum");
+		elementos.Add(elemento);
+		elemento = new Elemento("Drumstick");
+		elementos.Add(elemento);
+		elemento = new Elemento("Piano");
+		elementos.Add(elemento);
+		elemento = new Elemento("Saxophone");
+		elementos.Add(elemento);
+		elemento = new Elemento("Maracas");
+		elementos.Add(elemento);
+		elemento = new Elemento("Trombone");
+		elementos.Add(elemento);
+		elemento = new Elemento("Trumpet");
+		elementos.Add(elemento);
+		elemento = new Elemento("Xilophone");
+		elementos.Add(elemento);
+		elemento = new Elemento("Violin");
+		elementos.Add(elemento);
+		elemento = new Elemento("Accordion");
+		elementos.Add(elemento);
+		elemento = new Elemento("Cymbals");
+		elementos.Add(elemento);
+		elemento = new Elemento("Drums");
+		elementos.Add(elemento);
+		elemento = new Elemento("Harp");
+		elementos.Add(elemento);
+		elemento = new Elemento("Tambourine");
+		elementos.Add(elemento);
+		categorias[10].setElementos(elementos);
+		
+		//Creation elemento for Body's category
+		elementos = new List<Elemento>();
+		elemento = new Elemento("Eyes");
+		elementos.Add(elemento);
+		elemento = new Elemento("Nose");
+		elementos.Add(elemento);
+		elemento = new Elemento("Hand");
+		elementos.Add(elemento);
+		elemento = new Elemento("Foot");
+		elementos.Add(elemento);
+		elemento = new Elemento("Ankle");
+		elementos.Add(elemento);
+		elemento = new Elemento("Knee");
+		elementos.Add(elemento);
+		elemento = new Elemento("Eyebrow");
+		elementos.Add(elemento);
+		elemento = new Elemento("Lips");
+		elementos.Add(elemento);
+		elemento = new Elemento("Ears");
+		elementos.Add(elemento);
+		elemento = new Elemento("Mouth");
+		elementos.Add(elemento);
+		elemento = new Elemento("Tooth");
+		elementos.Add(elemento);
+		elemento = new Elemento("Finger");
+		elementos.Add(elemento);
+		categorias[11].setElementos(elementos);
 	}
 	
 	public void selectCorrect(){
