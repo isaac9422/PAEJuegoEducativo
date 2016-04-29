@@ -510,7 +510,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Trumpet");
 		elementos.Add(elemento);
-		elemento = new Elemento("Xilophone");
+		elemento = new Elemento("Xylophone");
 		elementos.Add(elemento);
 		elemento = new Elemento("Violin");
 		elementos.Add(elemento);
@@ -544,7 +544,7 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Lips");
 		elementos.Add(elemento);
-		elemento = new Elemento("Ears");
+		elemento = new Elemento("Ear");
 		elementos.Add(elemento);
 		elemento = new Elemento("Mouth");
 		elementos.Add(elemento);
