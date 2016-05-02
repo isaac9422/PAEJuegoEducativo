@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
 		{
 			if (i > 0) {
 					// Application.LoadLevel (i);
+					Debug.Log(SceneManager.sceneCount);
 					SceneManager.LoadScene (i);
 			} else if (i == -1) {
 					Application.Quit();
