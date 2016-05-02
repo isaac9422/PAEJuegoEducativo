@@ -60,6 +60,9 @@ public class InitializeGame : MonoBehaviour
 
 	public void reinforcePhase ()
 	{
+		if(correctAnswer == 3){
+			rewardCorrect();
+		}
 		loadImages();
 		audioSource.Play();
 		establishCorrectButton();
