@@ -60,7 +60,7 @@
      <Compile Include="Assets\scripts\level3\Game__Controller.cs" />
      <Compile Include="Assets\scripts\level3\Item.cs" />
      <Compile Include="Assets\scripts\level3\MoveItem.cs" />
-     <Compile Include="Assets\scripts\level4\JuegoController.cs" />
+     <Compile Include="Assets\scripts\level4\CategoriaController.cs" />
      <Compile Include="Assets\scripts\level5\Gamecontroler.cs" />
      <None Include="Assets\Resources\images\zSiteDownload.txt" />
      <None Include="Assets\Resources\sounds\siteDownloads.txt" />

@@ -13,8 +13,4 @@ public class SelectionController : MonoBehaviour
 				GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().addCorrectAnswer ();
 			}
 		}
-
-
-		
-
 }

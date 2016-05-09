@@ -25,6 +25,8 @@ public class InitializeGame : MonoBehaviour
 	private Elemento elementoCorrecto;
 	private List<Elemento> elementosIncorrecto;
 	private List<string> correctsAnswer;
+	private GameObject panelProgressBar;
+	private GameObject panelRewardPhase;
 	
 	// Use this for initialization
 	void Start ()
@@ -36,9 +38,15 @@ public class InitializeGame : MonoBehaviour
 		textoCategoria = GameObject.Find("TextCategory").GetComponent<Text>();
 		textoPalabra = GameObject.Find("TextPalabra").GetComponent<Text>();
 		audioSource = GameObject.FindWithTag("Sonido").GetComponent<AudioSource>();
+		panelProgressBar = GameObject.Find("PanelProgressBar");
+		panelRewardPhase = GameObject.Find("PanelRewardPhase");
+		panelRewardPhase.gameObject.SetActive(false);
 		createElements();
 		
-		int aleatorio = UnityEngine.Random.Range(0,categorias.Count);
+		int aleatorio = Util.getCategoria();
+		if(aleatorio<0){
+			aleatorio = UnityEngine.Random.Range(0,categorias.Count);	
+		}
 		textoCategoria.text = categorias[aleatorio].getNombre();
 		elementos = categorias[aleatorio].getElementos();
 		correctsAnswer = new List<string>();
@@ -60,9 +68,6 @@ public class InitializeGame : MonoBehaviour
 
 	public void reinforcePhase ()
 	{
-		if(correctAnswer == 3){
-			rewardCorrect();
-		}
 		loadImages();
 		audioSource.Play();
 		establishCorrectButton();
@@ -79,14 +84,17 @@ public class InitializeGame : MonoBehaviour
 		if (correctAnswer == 2) {
 			progress [correctAnswer++].color = new Color (0, 12, 255, 255);
 			GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().rewardPhase();
+			panelProgressBar.gameObject.SetActive(false);
+			panelRewardPhase.gameObject.SetActive(true);
 		}else if(correctAnswer == 3){
 			win=true;
 			correctAnswer = 0;
-			bun.gameObject.SetActive(true);
-			GameObject.FindGameObjectWithTag("Bun").GetComponent<BunAnimation>().changeFace();
-			for (int i=0; i<3; i++) {
+			// bun.gameObject.SetActive(true);
+			// GameObject.FindGameObjectWithTag("Bun").GetComponent<BunAnimation>().changeFace();
+			SceneManager.LoadScene(3);
+			// for (int i=0; i<3; i++) {
 					// progress [i].color = new Color (0, 12, 255, 0);
-			}	
+			// }	
 		}
 		else{				
 			progress [correctAnswer++].color = new Color (0, 12, 255, 255);

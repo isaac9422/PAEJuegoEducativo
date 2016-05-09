@@ -4,8 +4,8 @@ using Juego;
 
 public class MoveItem : MonoBehaviour {
 	private Item controlador;
-	public float x=2.0f;
-	public float y=1.5f;
+	public float x=2.3f;
+	public float y=1.78f;
 	// Use this for initialization
 	void Start () {
 		Vector2 X = new Vector2 (x, y);
