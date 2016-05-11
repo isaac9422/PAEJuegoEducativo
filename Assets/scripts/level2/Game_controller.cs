@@ -9,21 +9,45 @@ public class Game_controller : MonoBehaviour
 {
 	private int aciertos;
 	private int correctAnswer;
-	private int progressSession;
+	private int correctMatches;
 	private string textImage;
 	private string textWord;
+	private List<string> textCorrect;
+	private List<string> textIncorrect;
+	public Sprite[] images = new Sprite[3];
+	public Sprite imageLoad;
 	public Image[] progress = new Image[3];
 	public List<Categoria> categorias;
 	private Categoria categoria;
 	private Elemento elemento;
 	private List<Elemento> elementos;
+	private List<Elemento> elementosCorrecto;
+	private List<Elemento> elementosIncorrecto;
+	private List<string> correctsAnswer;
 	private Text textoCategoria;
+	private GameObject panelProgressBar;
+	private GameObject panelRewardPhase;
+	private SpriteRenderer imagen1;
+	private SpriteRenderer imagen2;
+	private SpriteRenderer imagen3;
+	
 	// Use this for initialization
 	void Start ()
 	{
+		// Definition an initialization of the variables
+		textCorrect = new List<string>();
+		textIncorrect = new List<string>();
 		correctAnswer = 0;
-		progressSession = 0;
+		correctMatches = 0;
 		textoCategoria = GameObject.Find("TextCategory").GetComponent<Text>();
+		panelProgressBar = GameObject.Find("PanelProgressBar");
+		panelRewardPhase = GameObject.Find("PanelRewardPhase");
+		panelRewardPhase.gameObject.SetActive(false);
+		
+		imagen1 = GameObject.Find("Imagen1").GetComponent<SpriteRenderer>();
+		imagen2 = GameObject.Find("Imagen2").GetComponent<SpriteRenderer>();
+		imagen3 = GameObject.Find("Imagen3").GetComponent<SpriteRenderer>();
+		
 		createElements();
 		
 		int aleatorio = Util.getCategoria();
@@ -31,13 +55,24 @@ public class Game_controller : MonoBehaviour
 			aleatorio = UnityEngine.Random.Range(0,categorias.Count);	
 		}
 		textoCategoria.text = categorias[aleatorio].getNombre();
+		elementos = categorias[aleatorio].getElementos();
+		correctsAnswer = new List<string>();
+		elementosCorrecto = new List<Elemento>();
+		elementosIncorrecto = new List<Elemento>();
 		
+		initializeGame();
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
 
+	}
+	
+	public void initializeGame(){
+		selectCorrect();
+		loadImages();
+		
 	}
 
 	public void checkWordImage ()
@@ -62,8 +97,7 @@ public class Game_controller : MonoBehaviour
 	}
 
 	public void succes ()
-	{
-		
+	{		
 		GameObject[] correctWords = GameObject.FindGameObjectsWithTag ("CorrectoWord");
 		foreach (GameObject correctWord in correctWords) {
 				correctWord.GetComponent<textController> ().sucess ();
@@ -77,20 +111,93 @@ public class Game_controller : MonoBehaviour
 
 	public void addCorrectAnswer ()
 	{
-		if(progressSession == 2){
-			progressSession = 0;
+		if(correctMatches == 2){
+			correctMatches = 0;
 			if (correctAnswer < 3) {
 				progress [correctAnswer++].color = new Color (0, 12, 255, 255);
 			}
 			if (correctAnswer == 3) {
-				//Application.LoadLevel (0);
+				StartCoroutine(animationExit());
 				SceneManager.LoadScene (3);
 			}
 		}else{
-			progressSession++;
+			correctMatches++;
 		}
 			
 	}
+	
+	IEnumerator animationExit(){
+		yield return new WaitForSeconds(1.5f);
+		panelProgressBar.gameObject.SetActive(false);
+		panelRewardPhase.gameObject.SetActive(true);
+	}
+	
+	public void selectCorrect(){
+		while(elementosCorrecto.Count < 3){
+			int aleatorio = Random.Range(0,elementos.Count);
+			if(!elementosCorrecto.Contains(elementos[aleatorio])){
+				elementosCorrecto.Add(elementos[aleatorio]);
+			}
+		}
+		elementosIncorrecto = new List<Elemento>();
+		for(int i = 0; i < elementos.Count;i++){
+			if(!elementosCorrecto.Contains(elementos[i])){
+				elementosIncorrecto.Add(elementos[i]);
+			}else{
+				textCorrect.Add(elementos[i].getNombre());
+			}	
+		}
+	}
+	
+	// public void rewardCorrect(){
+		// int aleatorio = Random.Range(0,correctsAnswer.Count);
+		// elementosIncorrecto = new List<Elemento>();
+		// string correctWord = correctsAnswer[aleatorio];
+		// for(int i = 0; i < elementos.Count;i++){
+			// if(!elementos[i].getNombre().Equals(correctWord)){
+					// elementosIncorrecto.Add(elementos[i]);
+			// }else{
+				// textoPalabra.text = correctWord;
+				// elementoCorrecto = elementos[i];
+			// }	
+		// }
+	// }
+	
+	public void loadImages(){
+		for(int i=0;i<textCorrect.Count;i++){
+			string ruta = "images/";
+			ruta += textCorrect[i].ToLower();
+			imageLoad = (Sprite) Resources.Load(ruta,typeof(Sprite));
+			images[i] = imageLoad;
+		// Debug.Log(imageLoad.bounds.size.x);
+		// Debug.Log(imageLoad.bounds.size.y);
+		}
+		imagen1.sprite = images[0];
+		imagen2.sprite = images[1];
+		imagen3.sprite = images[2];
+		// imagen1.transform.localScale.x = 1.28  * images[0].bounds.size.x;
+		// imagen1.transform.localScale.y = 1.28  * images[0].bounds.size.y;
+		float transformX = 2.206178f * 1.28f;
+		float transformY = 2.165933f * 1.28f;
+		imagen1.transform.localScale = new Vector3((transformX  / images[0].bounds.size.x),(transformY  / images[0].bounds.size.y),0);
+		imagen2.transform.localScale = new Vector3((transformX  / images[1].bounds.size.x),(transformY  / images[1].bounds.size.y),0);
+		imagen3.transform.localScale = new Vector3((transformX  / images[2].bounds.size.x),(transformY  / images[2].bounds.size.y),0);
+	}
+	
+	// public void establishCorrectButton(){
+		// int ran = Random.Range (0, 3);
+		// int incorrect = 0;
+		// for (int i=0; i<3; i++) {
+			// if (ran == i) {
+				// items [i].tag = "Correcto";
+				// items [i].image.sprite = correctImage;
+			// } else {
+				// items [i].tag = "Incorrecto";
+				// items [i].image.sprite = incorrectImage [incorrect++];
+			// }			
+		// }
+	// }
+	
 	public void backToMenu(){
 		SceneManager.LoadScene (0);
 	}

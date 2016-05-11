@@ -32,6 +32,7 @@ public class InitializeGame : MonoBehaviour
 	void Start ()
 	{
 		// reinforce = false;
+		// Variables definition and access to the elements
 		correctAnswer = 0;
 		bun = GameObject.Find("Bun").GetComponent<Animator>();
 		bun.gameObject.SetActive(false);
@@ -102,7 +103,7 @@ public class InitializeGame : MonoBehaviour
 	}
 	
 	IEnumerator animationExit(){
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(1.5f);
 			panelProgressBar.gameObject.SetActive(false);
 			panelRewardPhase.gameObject.SetActive(true);
 	}
