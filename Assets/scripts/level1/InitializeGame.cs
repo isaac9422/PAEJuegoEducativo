@@ -84,8 +84,7 @@ public class InitializeGame : MonoBehaviour
 		if (correctAnswer == 2) {
 			progress [correctAnswer++].color = new Color (0, 12, 255, 255);
 			GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().rewardPhase();
-			panelProgressBar.gameObject.SetActive(false);
-			panelRewardPhase.gameObject.SetActive(true);
+			StartCoroutine(animationExit());
 		}else if(correctAnswer == 3){
 			win=true;
 			correctAnswer = 0;
@@ -100,6 +99,12 @@ public class InitializeGame : MonoBehaviour
 			progress [correctAnswer++].color = new Color (0, 12, 255, 255);
 			GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().initaizeGame ();
 		}
+	}
+	
+	IEnumerator animationExit(){
+		yield return new WaitForSeconds(0.5f);
+			panelProgressBar.gameObject.SetActive(false);
+			panelRewardPhase.gameObject.SetActive(true);
 	}
 
 	public void backToMenu(){

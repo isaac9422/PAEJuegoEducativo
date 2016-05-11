@@ -41,7 +41,8 @@ public class Game__Controller : MonoBehaviour
 	}
 	
 	IEnumerator animationExit(){
-		yield return new WaitForSeconds(10);
+		int aleatorio = UnityEngine.Random.Range(0,15);
+		yield return new WaitForSeconds(10+aleatorio);
 		SceneManager.LoadScene(0);
 	}
 }
