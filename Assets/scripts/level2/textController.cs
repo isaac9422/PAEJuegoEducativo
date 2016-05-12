@@ -9,13 +9,13 @@ public class textController : MonoBehaviour
 		void Start ()
 		{
 				gameController = GameObject.FindGameObjectWithTag ("GameController").GetComponent<Game_controller> ();
-				text = this.GetComponent<TextMesh> ().text;
+				text = this.GetComponent<TextMesh>().text;
 		}
 	
 		// Update is called once per frame
 		void Update ()
 		{
-				
+				text = this.GetComponent<TextMesh>().text;
 		}
 
 		void OnMouseDown ()

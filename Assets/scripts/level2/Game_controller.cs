@@ -7,14 +7,12 @@ using UnityEngine.SceneManagement;
 //Game_controller for level 2
 public class Game_controller : MonoBehaviour
 {
-	private int aciertos;
 	private int correctAnswer;
 	private int correctMatches;
 	private string textImage;
 	private string textWord;
 	private List<string> textCorrect;
 	private List<string> textIncorrect;
-	public Sprite[] images = new Sprite[3];
 	public Sprite imageLoad;
 	public Image[] progress = new Image[3];
 	public List<Categoria> categorias;
@@ -27,27 +25,20 @@ public class Game_controller : MonoBehaviour
 	private Text textoCategoria;
 	private GameObject panelProgressBar;
 	private GameObject panelRewardPhase;
-	private SpriteRenderer imagen1;
-	private SpriteRenderer imagen2;
-	private SpriteRenderer imagen3;
+	public SpriteRenderer[] imagenes = new SpriteRenderer[3];
+	public TextMesh[] correctaMesh = new TextMesh[3];
+	public TextMesh[] palabraMesh = new TextMesh[6];
 	
 	// Use this for initialization
 	void Start ()
 	{
 		// Definition an initialization of the variables
-		textCorrect = new List<string>();
-		textIncorrect = new List<string>();
 		correctAnswer = 0;
 		correctMatches = 0;
 		textoCategoria = GameObject.Find("TextCategory").GetComponent<Text>();
 		panelProgressBar = GameObject.Find("PanelProgressBar");
 		panelRewardPhase = GameObject.Find("PanelRewardPhase");
 		panelRewardPhase.gameObject.SetActive(false);
-		
-		imagen1 = GameObject.Find("Imagen1").GetComponent<SpriteRenderer>();
-		imagen2 = GameObject.Find("Imagen2").GetComponent<SpriteRenderer>();
-		imagen3 = GameObject.Find("Imagen3").GetComponent<SpriteRenderer>();
-		
 		createElements();
 		
 		int aleatorio = Util.getCategoria();
@@ -57,8 +48,6 @@ public class Game_controller : MonoBehaviour
 		textoCategoria.text = categorias[aleatorio].getNombre();
 		elementos = categorias[aleatorio].getElementos();
 		correctsAnswer = new List<string>();
-		elementosCorrecto = new List<Elemento>();
-		elementosIncorrecto = new List<Elemento>();
 		
 		initializeGame();
 	}
@@ -70,9 +59,25 @@ public class Game_controller : MonoBehaviour
 	}
 	
 	public void initializeGame(){
+		textCorrect = new List<string>();
+		textIncorrect = new List<string>();
+		elementosCorrecto = new List<Elemento>();
+		elementosIncorrecto = new List<Elemento>();
+		
 		selectCorrect();
 		loadImages();
+		establishCorrect();
+	}
+	
+	public void rewardPhase(){
+		textCorrect = new List<string>();
+		textIncorrect = new List<string>();
+		elementosCorrecto = new List<Elemento>();
+		elementosIncorrecto = new List<Elemento>();
 		
+		rewardCorrect();
+		loadImages();
+		establishCorrect();
 	}
 
 	public void checkWordImage ()
@@ -109,21 +114,46 @@ public class Game_controller : MonoBehaviour
 		}
 	}
 
+	public void clear ()
+	{		
+		GameObject[] correctWords = GameObject.FindGameObjectsWithTag ("CorrectoWord");
+		foreach (GameObject correctWord in correctWords) {
+				correctWord.GetComponent<textController> ().clear ();
+				
+		}
+		GameObject[] correctImages = GameObject.FindGameObjectsWithTag ("CorrectoImage");
+		foreach (GameObject correctImage in correctImages) {
+				correctImage.GetComponent<ImageController> ().clear ();
+		}
+	}
+
 	public void addCorrectAnswer ()
 	{
 		if(correctMatches == 2){
 			correctMatches = 0;
-			if (correctAnswer < 3) {
+			if (correctAnswer == 2) {
 				progress [correctAnswer++].color = new Color (0, 12, 255, 255);
-			}
-			if (correctAnswer == 3) {
+				clear();
+				rewardPhase();
 				StartCoroutine(animationExit());
+			}
+			else if (correctAnswer == 3) {
 				SceneManager.LoadScene (3);
 			}
+			else {
+				progress [correctAnswer++].color = new Color (0, 12, 255, 255);
+				clear();
+				StartCoroutine(freezaGame());
+			}			
 		}else{
 			correctMatches++;
 		}
 			
+	}
+	
+	IEnumerator freezaGame(){
+		yield return new WaitForSeconds(1f);
+		initializeGame();
 	}
 	
 	IEnumerator animationExit(){
@@ -147,56 +177,81 @@ public class Game_controller : MonoBehaviour
 				textCorrect.Add(elementos[i].getNombre());
 			}	
 		}
+		bool flag = true;
+		while(flag){
+			int ramdon = Random.Range(0,3);
+			if(!correctsAnswer.Contains(textCorrect[ramdon])){
+				correctsAnswer.Add(textCorrect[ramdon]);
+				flag = false;
+			}
+		}
 	}
 	
-	// public void rewardCorrect(){
-		// int aleatorio = Random.Range(0,correctsAnswer.Count);
-		// elementosIncorrecto = new List<Elemento>();
-		// string correctWord = correctsAnswer[aleatorio];
-		// for(int i = 0; i < elementos.Count;i++){
-			// if(!elementos[i].getNombre().Equals(correctWord)){
-					// elementosIncorrecto.Add(elementos[i]);
-			// }else{
-				// textoPalabra.text = correctWord;
-				// elementoCorrecto = elementos[i];
-			// }	
-		// }
-	// }
+	public void rewardCorrect(){		
+		elementosIncorrecto = new List<Elemento>();
+		for(int i = 0; i < elementos.Count;i++){
+			if(!correctsAnswer.Contains(elementos[i].getNombre())){
+				elementosIncorrecto.Add(elementos[i]);
+			}else{
+				textCorrect.Add(elementos[i].getNombre());
+			}	
+		}
+	}
 	
 	public void loadImages(){
+		float transformX = 2.206178f * 1.28f;
+		float transformY = 2.165933f * 1.28f;
+		int desfaz = Random.Range(0,3);
 		for(int i=0;i<textCorrect.Count;i++){
 			string ruta = "images/";
 			ruta += textCorrect[i].ToLower();
 			imageLoad = (Sprite) Resources.Load(ruta,typeof(Sprite));
-			images[i] = imageLoad;
-		// Debug.Log(imageLoad.bounds.size.x);
-		// Debug.Log(imageLoad.bounds.size.y);
+			imagenes[(desfaz+i)%3].sprite = imageLoad;
+			imagenes[(desfaz+i)%3].transform.localScale = new Vector3((transformX / imageLoad.bounds.size.x),(transformY / imageLoad.bounds.size.y),0);
 		}
-		imagen1.sprite = images[0];
-		imagen2.sprite = images[1];
-		imagen3.sprite = images[2];
-		// imagen1.transform.localScale.x = 1.28  * images[0].bounds.size.x;
-		// imagen1.transform.localScale.y = 1.28  * images[0].bounds.size.y;
-		float transformX = 2.206178f * 1.28f;
-		float transformY = 2.165933f * 1.28f;
-		imagen1.transform.localScale = new Vector3((transformX  / images[0].bounds.size.x),(transformY  / images[0].bounds.size.y),0);
-		imagen2.transform.localScale = new Vector3((transformX  / images[1].bounds.size.x),(transformY  / images[1].bounds.size.y),0);
-		imagen3.transform.localScale = new Vector3((transformX  / images[2].bounds.size.x),(transformY  / images[2].bounds.size.y),0);
+		int avance = 3 - desfaz;
+		GameObject.Find("Imagen1").GetComponent<ImageController> ().textImage = textCorrect[(avance+0)%3];
+		GameObject.Find("Imagen2").GetComponent<ImageController> ().textImage = textCorrect[(avance+1)%3];
+		GameObject.Find("Imagen3").GetComponent<ImageController> ().textImage = textCorrect[(avance+2)%3];
+		for(int i=0;i<3;i++){
+			correctaMesh[(desfaz+i)%3].text = textCorrect[i];
+			correctaMesh[(desfaz+i)%3].gameObject.SetActive(false);
+		}
 	}
 	
-	// public void establishCorrectButton(){
-		// int ran = Random.Range (0, 3);
-		// int incorrect = 0;
-		// for (int i=0; i<3; i++) {
-			// if (ran == i) {
-				// items [i].tag = "Correcto";
-				// items [i].image.sprite = correctImage;
-			// } else {
-				// items [i].tag = "Incorrecto";
-				// items [i].image.sprite = incorrectImage [incorrect++];
-			// }			
-		// }
-	// }
+	public void establishCorrect(){
+		int desfaz = Random.Range(0,6);
+		int incorrect = 0;
+		int correct = 0;
+		int indice;
+		while(correct < 3 && incorrect < 3){
+			indice = (desfaz+correct+incorrect)%6;
+			int ran = Random.Range (0, 10);
+			if(ran>4){
+				palabraMesh[indice].text = textCorrect[correct++];
+			}else{
+				int a = Random.Range(0,elementosIncorrecto.Count);
+				if(!textIncorrect.Contains(elementosIncorrecto[a].getNombre())){
+					textIncorrect.Add(elementosIncorrecto[a].getNombre());
+					palabraMesh[indice].text = elementosIncorrecto[a].getNombre();
+					incorrect++;
+				}
+			}			
+		}
+		while(correct<3){
+			indice = (desfaz+correct+incorrect)%6;
+			palabraMesh[indice].text = textCorrect[correct++];
+		}
+		while(incorrect<3){
+			indice = (desfaz+correct+incorrect)%6;
+			int a = Random.Range(0,elementosIncorrecto.Count);
+			if(!textIncorrect.Contains(elementosIncorrecto[a].getNombre())){
+				textIncorrect.Add(elementosIncorrecto[a].getNombre());
+				palabraMesh[indice].text = elementosIncorrecto[a].getNombre();
+				incorrect++;
+			}
+		}
+	}
 	
 	public void backToMenu(){
 		SceneManager.LoadScene (0);

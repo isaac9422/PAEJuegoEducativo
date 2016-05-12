@@ -104,8 +104,8 @@ public class InitializeGame : MonoBehaviour
 	
 	IEnumerator animationExit(){
 		yield return new WaitForSeconds(1.5f);
-			panelProgressBar.gameObject.SetActive(false);
-			panelRewardPhase.gameObject.SetActive(true);
+		panelProgressBar.gameObject.SetActive(false);
+		panelRewardPhase.gameObject.SetActive(true);
 	}
 
 	public void backToMenu(){
