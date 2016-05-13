@@ -28,11 +28,13 @@ public class Game_controller : MonoBehaviour
 	public SpriteRenderer[] imagenes = new SpriteRenderer[3];
 	public TextMesh[] correctaMesh = new TextMesh[3];
 	public TextMesh[] palabraMesh = new TextMesh[6];
+	public bool matchIncorrect;
 	
 	// Use this for initialization
 	void Start ()
 	{
 		// Definition an initialization of the variables
+		matchIncorrect = false;
 		correctAnswer = 0;
 		correctMatches = 0;
 		textoCategoria = GameObject.Find("TextCategory").GetComponent<Text>();
@@ -79,6 +81,57 @@ public class Game_controller : MonoBehaviour
 		loadImages();
 		establishCorrect();
 	}
+	
+	public void reinforcePhase(){
+		matchIncorrect = false;
+		
+		GameObject[] correctWords = GameObject.FindGameObjectsWithTag ("CorrectoWord");
+		List<string> wordsSelected = new List<string>();
+		foreach (GameObject correctWord in correctWords) {
+				string stringCorrectWord = correctWord.GetComponent<textController>().text;
+				wordsSelected.Add(stringCorrectWord);
+		}
+		
+		GameObject[] correctImages = GameObject.FindGameObjectsWithTag ("CorrectoImage");
+		List<string> imagesSelected = new List<string>();
+		foreach (GameObject correctImage in correctImages) {
+				string stringCorrectImage = correctImage.GetComponent<ImageController>().textImage;
+				imagesSelected.Add(stringCorrectImage);
+		}
+		loadImages();
+		establishCorrect();
+		
+		for(int i=0;i<3;i++){
+			bool bandera = false;
+			string textImage = imagenes[i].GetComponent<ImageController> ().textImage;
+			foreach (string stringCorrectImage in imagesSelected) {
+				if((string.Compare(textImage,stringCorrectImage,true)) == 0){
+					bandera = true;
+				}
+			}
+			if(bandera){
+				imagenes[i].GetComponent<ImageController> ().sucess ();
+			}else{
+				imagenes[i].GetComponent<ImageController> ().clear ();
+			}			
+		}
+		
+		for(int i=0;i<6;i++){
+			bool bandera = false;
+			string textWord = palabraMesh[i].text;
+			foreach (string stringCorrectWord in wordsSelected) {
+				if((string.Compare(textWord,stringCorrectWord,true)) == 0){
+					bandera = true;
+				}
+			}
+			if(bandera){
+				palabraMesh[i].GetComponent<textController> ().sucess ();
+			}else{
+				palabraMesh[i].GetComponent<textController> ().clear ();
+			}			
+		}
+		
+	}
 
 	public void checkWordImage ()
 	{
@@ -94,6 +147,12 @@ public class Game_controller : MonoBehaviour
 				} else {
 					GameObject.FindGameObjectWithTag ("SelectedWord").GetComponent<textController> ().clear ();
 					GameObject.FindGameObjectWithTag ("SelectedImage").GetComponent<ImageController> ().clear ();
+					if(matchIncorrect){
+						StartCoroutine(seeSolution());
+						// reinforcePhase();
+					}else{
+						matchIncorrect = true;
+					}
 					}
 				}
 		}
@@ -160,6 +219,19 @@ public class Game_controller : MonoBehaviour
 		yield return new WaitForSeconds(1.5f);
 		panelProgressBar.gameObject.SetActive(false);
 		panelRewardPhase.gameObject.SetActive(true);
+	}
+	
+	IEnumerator seeSolution(){
+		for(int i=0;i<3;i++){
+			correctaMesh[i].gameObject.SetActive(true);
+		}
+		yield return new WaitForSeconds(5f);
+		for(int i=0;i<3;i++){
+			correctaMesh[i].gameObject.SetActive(false);
+		}
+		if(matchIncorrect){
+			reinforcePhase();
+		}
 	}
 	
 	public void selectCorrect(){
