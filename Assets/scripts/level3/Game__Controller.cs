@@ -18,6 +18,10 @@ public class Game__Controller : MonoBehaviour
 		defineReward();
 		int aleatorio = UnityEngine.Random.Range(0,premios.Count);
 		textoPremio.text = premios[aleatorio];
+		Image image = GameObject.Find("Image").GetComponent<Image>();
+		string ruta = "images/";
+		ruta += textoPremio.text;
+		image.sprite = (Sprite) Resources.Load(ruta,typeof(Sprite));
 		StartCoroutine(animationExit());
 	}
 
@@ -33,11 +37,14 @@ public class Game__Controller : MonoBehaviour
 	
 	public void defineReward(){
 		premios = new List<String>();
-		premios.Add("Bombón");
-		premios.Add("Chocolatina");
-		premios.Add("Menta");
-		premios.Add("Sorpresa");
-		premios.Add("Abrazo");		
+		premios.Add("Ice cream");
+		premios.Add("Pie");
+		premios.Add("Candy");
+		premios.Add("Cookie");
+		premios.Add("Cupcake");
+		premios.Add("Flower");
+		premios.Add("Fruit");
+		premios.Add("Medal");
 	}
 	
 	IEnumerator animationExit(){

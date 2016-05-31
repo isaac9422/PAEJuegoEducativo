@@ -245,8 +245,6 @@ public class InitializeGame : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Watch");
 		elementos.Add(elemento);
-		elemento = new Elemento("Umbrella");
-		elementos.Add(elemento);
 		elemento = new Elemento("Belt");
 		elementos.Add(elemento);
 		categorias[2].setElementos(elementos);
@@ -436,6 +434,8 @@ public class InitializeGame : MonoBehaviour
 		elemento = new Elemento("Book");
 		elementos.Add(elemento);
 		elemento = new Elemento("Keys");
+		elementos.Add(elemento);
+		elemento = new Elemento("Umbrella");
 		elementos.Add(elemento);
 		categorias[7].setElementos(elementos);
 		

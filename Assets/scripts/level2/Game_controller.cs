@@ -461,8 +461,6 @@ public class Game_controller : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Watch");
 		elementos.Add(elemento);
-		elemento = new Elemento("Umbrella");
-		elementos.Add(elemento);
 		elemento = new Elemento("Belt");
 		elementos.Add(elemento);
 		categorias[2].setElementos(elementos);
@@ -609,8 +607,6 @@ public class Game_controller : MonoBehaviour
 		elementos.Add(elemento);
 		elemento = new Elemento("Oven");
 		elementos.Add(elemento);
-		elemento = new Elemento("Keyboard");
-		elementos.Add(elemento);
 		categorias[6].setElementos(elementos);
 		
 		//Creation elemento for House's category
@@ -652,6 +648,10 @@ public class Game_controller : MonoBehaviour
 		elemento = new Elemento("Book");
 		elementos.Add(elemento);
 		elemento = new Elemento("Keys");
+		elementos.Add(elemento);
+		elemento = new Elemento("Umbrella");
+		elementos.Add(elemento);
+		elemento = new Elemento("Keyboard");
 		elementos.Add(elemento);
 		categorias[7].setElementos(elementos);
 		
@@ -697,7 +697,7 @@ public class Game_controller : MonoBehaviour
 		elementos = new List<Elemento>();
 		elemento = new Elemento("Yellow");
 		elementos.Add(elemento);
-		elemento = new Elemento("Black");
+		// elemento = new Elemento("Black");
 		elementos.Add(elemento);
 		elemento = new Elemento("Blue");
 		elementos.Add(elemento);
