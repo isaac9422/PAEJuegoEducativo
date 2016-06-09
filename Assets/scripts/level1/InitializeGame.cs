@@ -27,6 +27,7 @@ public class InitializeGame : MonoBehaviour
 	private List<string> correctsAnswer;
 	private GameObject panelProgressBar;
 	private GameObject panelRewardPhase;
+	private int wrong = 0;
 	
 	// Use this for initialization
 	void Start ()
@@ -69,12 +70,20 @@ public class InitializeGame : MonoBehaviour
 
 	public void reinforcePhase ()
 	{
+		wrong++;
+		if(wrong==3){
+			PopupManager.setTextPopup("Te has equivacado, mira que figura no va a cambiar");
+			PopupManager.showPopup();
+			wrong = 0;
+		}
 		loadImages();
 		audioSource.Play();
 		establishCorrectButton();
 	}
 	
 	public void rewardPhase(){
+		PopupManager.setTextPopup("Felicitaciones, vamos a repasar lo aprendido y ganarás un premio");
+		PopupManager.showPopup();
 		rewardCorrect();
 		loadImages();
 		establishCorrectButton();
@@ -82,6 +91,7 @@ public class InitializeGame : MonoBehaviour
 
 	public void addCorrectAnswer ()
 	{
+		wrong = 0;
 		if (correctAnswer == 2) {
 			progress [correctAnswer++].color = new Color (0, 12, 255, 255);
 			GameObject.FindWithTag ("GameController").GetComponent<InitializeGame> ().rewardPhase();

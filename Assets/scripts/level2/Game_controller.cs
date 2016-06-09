@@ -29,6 +29,7 @@ public class Game_controller : MonoBehaviour
 	public TextMesh[] correctaMesh = new TextMesh[3];
 	public TextMesh[] palabraMesh = new TextMesh[6];
 	public bool matchIncorrect;
+	private int wrong = 1;
 	
 	// Use this for initialization
 	void Start ()
@@ -72,6 +73,8 @@ public class Game_controller : MonoBehaviour
 	}
 	
 	public void rewardPhase(){
+		PopupManager.setTextPopup("Felicitaciones, vamos a repasar lo aprendido y ganarás un premio");
+		PopupManager.showPopup();
 		textCorrect = new List<string>();
 		textIncorrect = new List<string>();
 		elementosCorrecto = new List<Elemento>();
@@ -147,9 +150,14 @@ public class Game_controller : MonoBehaviour
 				} else {
 					GameObject.FindGameObjectWithTag ("SelectedWord").GetComponent<textController> ().clear ();
 					GameObject.FindGameObjectWithTag ("SelectedImage").GetComponent<ImageController> ().clear ();
-					if(matchIncorrect){
+					if(matchIncorrect){	
+						wrong++;
+						if(wrong >= 3){
+							PopupManager.setTextPopup("Pon atención, se mostraran las respuestas");
+							PopupManager.showPopup();
+							wrong = 0;
+						}
 						StartCoroutine(seeSolution());
-						// reinforcePhase();
 					}else{
 						matchIncorrect = true;
 					}
@@ -161,7 +169,8 @@ public class Game_controller : MonoBehaviour
 	}
 
 	public void succes ()
-	{		
+	{	
+		wrong = 0;
 		GameObject[] correctWords = GameObject.FindGameObjectsWithTag ("CorrectoWord");
 		foreach (GameObject correctWord in correctWords) {
 				correctWord.GetComponent<textController> ().sucess ();
@@ -225,7 +234,7 @@ public class Game_controller : MonoBehaviour
 		for(int i=0;i<3;i++){
 			correctaMesh[i].gameObject.SetActive(true);
 		}
-		yield return new WaitForSeconds(5f);
+		yield return new WaitForSeconds(7f);
 		for(int i=0;i<3;i++){
 			correctaMesh[i].gameObject.SetActive(false);
 		}
