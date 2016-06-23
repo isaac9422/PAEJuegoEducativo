@@ -7,24 +7,42 @@ using UnityEngine.SceneManagement;
 //Game_controller for level 2
 public class Game_controller : MonoBehaviour
 {
-	private int correctAnswer;
-	private int correctMatches;
-	private string textImage;
-	private string textWord;
-	private List<string> textCorrect;
-	private List<string> textIncorrect;
+	// private int correctAnswer;
+	// private int correctMatches;
+	// private string textImage;
+	// private string textWord;
+	// private List<string> textCorrect;
+	// private List<string> textIncorrect;
+	public int correctAnswer;
+	public int correctMatches;
+	public string textImage;
+	public string textWord;
+	public List<string> textCorrect;
+	public List<string> textIncorrect;
+	
 	public Sprite imageLoad;
 	public Image[] progress = new Image[3];
 	public List<Categoria> categorias;
-	private Categoria categoria;
-	private Elemento elemento;
-	private List<Elemento> elementos;
-	private List<Elemento> elementosCorrecto;
-	private List<Elemento> elementosIncorrecto;
-	private List<string> correctsAnswer;
-	private Text textoCategoria;
-	private GameObject panelProgressBar;
-	private GameObject panelRewardPhase;
+	
+	// private Categoria categoria;
+	// private Elemento elemento;
+	// private List<Elemento> elementos;
+	// private List<Elemento> elementosCorrecto;
+	// private List<Elemento> elementosIncorrecto;
+	// private List<string> correctsAnswer;
+	// private Text textoCategoria;
+	// private GameObject panelProgressBar;
+	// private GameObject panelRewardPhase;
+	public Categoria categoria;
+	public Elemento elemento;
+	public List<Elemento> elementos;
+	public List<Elemento> elementosCorrecto;
+	public List<Elemento> elementosIncorrecto;
+	public List<string> correctsAnswer;
+	public Text textoCategoria;
+	public GameObject panelProgressBar;
+	public GameObject panelRewardPhase;
+	
 	public SpriteRenderer[] imagenes = new SpriteRenderer[3];
 	public TextMesh[] correctaMesh = new TextMesh[3];
 	public TextMesh[] palabraMesh = new TextMesh[6];
@@ -73,7 +91,8 @@ public class Game_controller : MonoBehaviour
 	}
 	
 	public void rewardPhase(){
-		PopupManager.setTextPopup("Felicitaciones, vamos a repasar lo aprendido y ganarás un premio");
+		
+		PopupManager.setTextPopup("Congratulations!. Now let's review what you have learned and you will win a prize.\n ¡Felicitaciones! Vamos a repasar lo aprendido y ganarás un premio");
 		PopupManager.showPopup();
 		textCorrect = new List<string>();
 		textIncorrect = new List<string>();
@@ -152,8 +171,9 @@ public class Game_controller : MonoBehaviour
 					GameObject.FindGameObjectWithTag ("SelectedImage").GetComponent<ImageController> ().clear ();
 					if(matchIncorrect){	
 						wrong++;
-						if(wrong >= 3){
-							PopupManager.setTextPopup("Pon atención, se mostraran las respuestas");
+						if(wrong >= 2){
+							// PopupManager.setTextPopup("Pon atención, se mostraran las respuestas");
+							PopupManager.setTextPopup("Pay attention, the answers will be displayed. Pon atención, se mostrarán las respuestas");
 							PopupManager.showPopup();
 							wrong = 0;
 						}
@@ -234,7 +254,7 @@ public class Game_controller : MonoBehaviour
 		for(int i=0;i<3;i++){
 			correctaMesh[i].gameObject.SetActive(true);
 		}
-		yield return new WaitForSeconds(7f);
+		yield return new WaitForSeconds(5f);
 		for(int i=0;i<3;i++){
 			correctaMesh[i].gameObject.SetActive(false);
 		}
@@ -283,7 +303,7 @@ public class Game_controller : MonoBehaviour
 		float transformX = 2.206178f * 1.28f;
 		float transformY = 2.165933f * 1.28f;
 		int desfaz = Random.Range(0,3);
-		for(int i=0;i<textCorrect.Count;i++){
+		for(int i=0;i<3;i++){
 			string ruta = "images/";
 			ruta += textCorrect[i].ToLower();
 			imageLoad = (Sprite) Resources.Load(ruta,typeof(Sprite));
@@ -305,6 +325,7 @@ public class Game_controller : MonoBehaviour
 		int incorrect = 0;
 		int correct = 0;
 		int indice;
+		textIncorrect.Clear();
 		while(correct < 3 && incorrect < 3){
 			indice = (desfaz+correct+incorrect)%6;
 			int ran = Random.Range (0, 10);
@@ -706,7 +727,7 @@ public class Game_controller : MonoBehaviour
 		elementos = new List<Elemento>();
 		elemento = new Elemento("Yellow");
 		elementos.Add(elemento);
-		// elemento = new Elemento("Black");
+		elemento = new Elemento("Black");
 		elementos.Add(elemento);
 		elemento = new Elemento("Blue");
 		elementos.Add(elemento);

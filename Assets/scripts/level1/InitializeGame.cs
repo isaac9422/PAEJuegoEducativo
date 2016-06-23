@@ -72,7 +72,7 @@ public class InitializeGame : MonoBehaviour
 	{
 		wrong++;
 		if(wrong==3){
-			PopupManager.setTextPopup("Te has equivacado, mira que figura no va a cambiar");
+			PopupManager.setTextPopup("You are wrong! Watch the figure that does not change. ¡Te equivocaste! Mira la figura que no cambia");
 			PopupManager.showPopup();
 			wrong = 0;
 		}
@@ -82,7 +82,7 @@ public class InitializeGame : MonoBehaviour
 	}
 	
 	public void rewardPhase(){
-		PopupManager.setTextPopup("Felicitaciones, vamos a repasar lo aprendido y ganarás un premio");
+		PopupManager.setTextPopup("Congratulations!. Now let's review what you have learned and you will win a prize. ¡Felicitaciones! Vamos a repasar lo aprendido y ganarás un premio");
 		PopupManager.showPopup();
 		rewardCorrect();
 		loadImages();
