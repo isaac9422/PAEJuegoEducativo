@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
 	{
 		if (i > 0) {
 			Util.setLevel(i);
+			Util.createElements();
 			SceneManager.LoadScene (4);
 		} else if (i == -1) {
 			Application.Quit();

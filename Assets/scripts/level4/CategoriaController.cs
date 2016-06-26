@@ -21,7 +21,7 @@ public class CategoriaController : MonoBehaviour {
 	}
 			
 	public void loadLevel(int i){
-		Util.setCategoria(i);
+		Util.setIntCategoria(i);
 		SceneManager.LoadScene (Util.getLevel());
 	}
 }
