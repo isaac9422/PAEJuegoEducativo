@@ -20,8 +20,20 @@ public class CategoriaController : MonoBehaviour {
 		SceneManager.LoadScene (0);
 	}
 			
-	public void loadLevel(int i){
-		Util.setIntCategoria(i);
-		SceneManager.LoadScene (Util.getLevel());
+	public void showInstructions(int categoria){
+		if(Util.getLevel()>0){
+			Util.setIntCategoria(categoria);
+			if(Util.getLevel()==1){
+				Util.setMessage("Selecciona la imagen que corresponda a la palabra mencionada");
+			}else if(Util.getLevel()==2){
+				Util.setMessage("Empareja una imagen con la palabra que represente a la imagen seleccionada");
+			}else{
+				Util.setMessage("Selecciona");
+			}
+			SceneManager.LoadScene(7);
+		}else{
+			SceneManager.LoadScene(0);
+		}
+		
 	}
 }

@@ -9,6 +9,7 @@ public class Util : MonoBehaviour {
 	// Use this for initialization
 	static int category = -1;
 	static int level = 0;
+	static string message = "";
 	private static List<Categoria> categorias;
 	private static Categoria categoria;
 	private static Elemento elemento;
@@ -25,6 +26,9 @@ public class Util : MonoBehaviour {
 	
 	public static void setIntCategoria(int categor){
 		category = categor;
+		if(categorias==null){
+			createElements();
+		}
 		setCategoria(categorias[categor]);
 	}
 	
@@ -42,6 +46,14 @@ public class Util : MonoBehaviour {
 	
 	public static void setLevel(int nivel){
 		level = nivel;
+	}
+	
+	public static string getMessage(){
+		return message;
+	}
+	
+	public static void setMessage(string mensaje){
+		message = mensaje;
 	}
 	
 	public static Categoria getRandomCategory(){

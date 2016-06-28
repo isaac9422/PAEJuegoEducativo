@@ -19,13 +19,13 @@ public class GameController : MonoBehaviour
 		
 	}
 
-	public void loadlevel (int i)
+	public void loadlevel (int level)
 	{
-		if (i > 0) {
-			Util.setLevel(i);
+		if (level > 0) {
+			Util.setLevel(level);
 			Util.createElements();
 			SceneManager.LoadScene (4);
-		} else if (i == -1) {
+		} else if (level == -1) {
 			Application.Quit();
 		}
 	}
