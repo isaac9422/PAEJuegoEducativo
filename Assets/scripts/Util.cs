@@ -10,10 +10,12 @@ public class Util : MonoBehaviour {
 	static int category = -1;
 	static int level = 0;
 	static string message = "";
+	static string mensaje = "";
 	private static List<Categoria> categorias;
 	private static Categoria categoria;
 	private static Elemento elemento;
 	private static List<Elemento> elementos;
+	static string nombre = "";
 	
 	void Start () {	}
 	
@@ -56,6 +58,22 @@ public class Util : MonoBehaviour {
 		message = mensaje;
 	}
 	
+	public static string getMensaje(){
+		return mensaje;
+	}
+	
+	public static void setMensaje(string message){
+		mensaje = message;
+	}
+	
+	public static string getNombre(){
+		return nombre;
+	}
+	
+	public static void setNombre(string name){
+		nombre = name;
+	}
+	
 	public static Categoria getRandomCategory(){
 		if(categorias==null){
 			createElements();
@@ -80,7 +98,7 @@ public class Util : MonoBehaviour {
 		categorias.Add(categoria);
 		categoria = new Categoria("Sports");
 		categorias.Add(categoria);
-		categoria = new Categoria("Technologys");
+		categoria = new Categoria("Technology");
 		categorias.Add(categoria);
 		categoria = new Categoria("House");
 		categorias.Add(categoria);
@@ -187,7 +205,7 @@ public class Util : MonoBehaviour {
 		elementos.Add(elemento);
 		elemento = new Elemento("Gloves","Guantes");
 		elementos.Add(elemento);
-		elemento = new Elemento("Glass","Guantes");
+		elemento = new Elemento("Glass","Gafas");
 		elementos.Add(elemento);
 		elemento = new Elemento("Boots","Botas");
 		elementos.Add(elemento);
@@ -370,6 +388,8 @@ public class Util : MonoBehaviour {
 		elemento = new Elemento("Chair","Silla");
 		elementos.Add(elemento);
 		elemento = new Elemento("Table","Mesa");
+		elementos.Add(elemento);
+		elemento = new Elemento("Desk","Escritorio");
 		elementos.Add(elemento);
 		elemento = new Elemento("Toilet","Baño");
 		elementos.Add(elemento);

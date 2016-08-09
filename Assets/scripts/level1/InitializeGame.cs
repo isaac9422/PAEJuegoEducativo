@@ -50,9 +50,7 @@ public class InitializeGame : MonoBehaviour
 	}
 	
 		// Update is called once per frame
-	void Update ()	{
-
-	}
+	void Update ()	{	}
 
 	public void initaizeGame ()
 	{
@@ -66,7 +64,7 @@ public class InitializeGame : MonoBehaviour
 		wrong++;
 		if(wrong==3){
 			PopupManager.setTextPopup("You are wrong! Watch the figure that does not change.\n¡Te equivocaste! Mira la figura que no cambia");
-			PopupManager.showPopup();
+			PopupManager.showPopup(false);
 			wrong = 0;
 		}
 		loadImages();
@@ -76,7 +74,7 @@ public class InitializeGame : MonoBehaviour
 	
 	public void rewardPhase(){
 		PopupManager.setTextPopup("Congratulations!. Now let's review what you have learned and you will win a prize.\n ¡Felicitaciones! Vamos a repasar lo aprendido y ganarás un premio");
-		PopupManager.showPopup();
+		PopupManager.showPopup(true);
 		rewardCorrect();
 		loadImages();
 		establishCorrectButton();
@@ -84,9 +82,10 @@ public class InitializeGame : MonoBehaviour
 
 	public void addCorrectAnswer ()
 	{
-		string s = "Haz acertado, la traducción de "+elementoCorrecto.getNombre()+" es: "+elementoCorrecto.getNombreSpa();
+		string s = "You're correct!, "+elementoCorrecto.getNombre()+" translate as: "+elementoCorrecto.getNombreSpa();
+		s += "\nHas acertado, la traducción de "+elementoCorrecto.getNombre()+" es: "+elementoCorrecto.getNombreSpa();
 		PopupManager.setTextPopup(s);
-		PopupManager.showPopup();
+		PopupManager.showPopup(true);
 		wrong = 0;
 		if (correctAnswer == 2) {
 			progress [correctAnswer++].color = new Color (0, 12, 255, 255);
@@ -95,7 +94,7 @@ public class InitializeGame : MonoBehaviour
 		}else if(correctAnswer == 3){
 			win=true;
 			correctAnswer = 0;
-			SceneManager.LoadScene(3);
+			StartCoroutine(animationReward());
 		}
 		else{				
 			progress [correctAnswer++].color = new Color (0, 12, 255, 255);
@@ -104,13 +103,18 @@ public class InitializeGame : MonoBehaviour
 	}
 	
 	IEnumerator animationExit(){
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(1f);
 		panelProgressBar.gameObject.SetActive(false);
 		panelRewardPhase.gameObject.SetActive(true);
 	}
+	
+	IEnumerator animationReward(){
+		yield return new WaitForSeconds(1f);
+		SceneManager.LoadScene("level3");
+	}
 
 	public void backToMenu(){
-		SceneManager.LoadScene (0);
+		SceneManager.LoadScene ("level0");
 	}
 	
 	public void selectCorrect(){

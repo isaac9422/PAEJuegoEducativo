@@ -16,7 +16,6 @@ public class Gamecontroler : MonoBehaviour
 	public bool win=false;
 	private int correctAnswer;
 	private Text textoCategoria;
-	private Text textoPalabra;
 	private Image imagePalabra;
 	private AudioSource audioSource;
 	private Categoria categoriaSelected;
@@ -34,7 +33,6 @@ public class Gamecontroler : MonoBehaviour
 		// Variables definition and access to the elements
 		correctAnswer = 0;
 		textoCategoria = GameObject.Find("TextCategory").GetComponent<Text>();
-		textoPalabra = GameObject.Find("TextPalabra").GetComponent<Text>();
 		imagePalabra = GameObject.Find("ImagePalabra").GetComponent<Image>();
 		audioSource = GameObject.FindWithTag("Sonido").GetComponent<AudioSource>();
 		panelProgressBar = GameObject.Find("PanelProgressBar");

@@ -13,7 +13,10 @@ public class MoveItem : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {	}
 	
+	void onCollisionEnter(Collision collision){
+		// Destroy(gameObject);
+		Debug.Log("Null");
 	}
 }

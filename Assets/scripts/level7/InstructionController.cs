@@ -13,15 +13,21 @@ public class InstructionController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {	}
 	
+	public void mostrarMensaje(){
+		textMessage.text = Util.getMensaje();
+	}
+	
+	public void showMessage(){
+		textMessage.text = Util.getMessage();
 	}
 			
 	public void backToCategory(){
-		SceneManager.LoadScene (4);
+		SceneManager.LoadScene ("level4");
 	}
 			
 	public void loadLevel(){
-		SceneManager.LoadScene (Util.getLevel());
+		SceneManager.LoadScene ("level"+Util.getLevel());
 }
 }

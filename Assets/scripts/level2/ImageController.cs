@@ -10,8 +10,7 @@ public class ImageController : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-
-				gameController = GameObject.FindGameObjectWithTag ("GameController").GetComponent<Game_controller> ();
+			gameController = GameObject.FindGameObjectWithTag ("GameController").GetComponent<Game_controller> ();
 		}
 	
 		// Update is called once per frame
@@ -19,9 +18,8 @@ public class ImageController : MonoBehaviour
 
 		void OnMouseDown ()
 		{
-				selectImage ();
-				gameController.checkWordImage ();
-		
+			selectImage ();
+			gameController.checkWordImage ();		
 		}
 	
 		void selectImage ()

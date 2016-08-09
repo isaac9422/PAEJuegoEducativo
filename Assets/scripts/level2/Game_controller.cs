@@ -74,7 +74,7 @@ public class Game_controller : MonoBehaviour
 	public void rewardPhase(){
 		
 		PopupManager.setTextPopup("Congratulations!. Now let's review what you have learned and you will win a prize.\n ¡Felicitaciones! Vamos a repasar lo aprendido y ganarás un premio");
-		PopupManager.showPopup();
+		PopupManager.showPopup(true);
 		textCorrect = new List<string>();
 		textIncorrect = new List<string>();
 		elementosCorrecto = new List<Elemento>();
@@ -143,6 +143,13 @@ public class Game_controller : MonoBehaviour
 				textImage = GameObject.FindGameObjectWithTag ("SelectedImage").GetComponent<ImageController> ().textImage;
 				textWord = GameObject.FindGameObjectWithTag ("SelectedWord").GetComponent<textController> ().text;
 				if (textImage == textWord) {
+					string nombre = elementosCorrecto.Find(x => x.getNombre().Contains(textImage)).getNombreSpa();
+					string name = elementosCorrecto.Find(x => x.getNombre().Contains(textImage)).getNombre();
+					string s = "You're correct!, "+name+" translate as: "+nombre;
+					s += "\nHas acertado, la traducción de "+name+" es: "+nombre;
+					PopupManager.setTextPopup(s);
+					PopupManager.showPopup(true);
+										
 					GameObject.FindGameObjectWithTag ("SelectedWord").tag = "CorrectoWord";
 					GameObject.FindGameObjectWithTag ("SelectedImage").tag = "CorrectoImage";
 					addCorrectAnswer ();
@@ -153,9 +160,9 @@ public class Game_controller : MonoBehaviour
 					if(matchIncorrect){	
 						wrong++;
 						if(wrong >= 2){
-							// PopupManager.setTextPopup("Pon atención, se mostraran las respuestas");
-							PopupManager.setTextPopup("Pay attention, the answers will be displayed.\n Pon atención, se mostrarán las respuestas");
-							PopupManager.showPopup();
+							// PopupManager.setTextPopup("Pon atención, mira las respuestas que aparecen debajo de las figuras en letra verde
+							PopupManager.setTextPopup("Pay attention, check the answers under the figures in green letter.\n Pon atención, mira las respuestas que aparecen debajo de las figuras en letra verde");
+							PopupManager.showPopup(false);
 							wrong = 0;
 						}
 						StartCoroutine(seeSolution());
@@ -207,7 +214,7 @@ public class Game_controller : MonoBehaviour
 				StartCoroutine(animationExit());
 			}
 			else if (correctAnswer == 3) {
-				SceneManager.LoadScene (3);
+				SceneManager.LoadScene ("level3");
 			}
 			else {
 				progress [correctAnswer++].color = new Color (0, 12, 255, 255);
@@ -337,6 +344,6 @@ public class Game_controller : MonoBehaviour
 	}
 	
 	public void backToMenu(){
-		SceneManager.LoadScene (0);
+		SceneManager.LoadScene ("level0");
 	}
 }

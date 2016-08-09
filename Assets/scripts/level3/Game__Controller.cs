@@ -30,13 +30,10 @@ public class Game__Controller : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update ()
-	{
-		
-	}
+	void Update () {	}
 		
 	public void backToMenu(){
-		SceneManager.LoadScene (0);
+		SceneManager.LoadScene ("level0");
 	}
 	
 	public void defineReward(){
@@ -62,7 +59,8 @@ public class Game__Controller : MonoBehaviour
 	
 	IEnumerator animationExit(){
 		int aleatorio = UnityEngine.Random.Range(0,15);
-		yield return new WaitForSeconds(10+aleatorio);
-		SceneManager.LoadScene(0);
+		int aleatorioBase = UnityEngine.Random.Range(10,20);
+		yield return new WaitForSeconds(aleatorioBase+aleatorio);
+		backToMenu();
 	}
 }
