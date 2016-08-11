@@ -183,8 +183,8 @@ public class ControllerGame : MonoBehaviour
 	}
 	
 	public void establishCorrectButton(){
-		float transformX = 2.206178f * 1.28f;
-		float transformY = 2.165933f * 1.28f;
+		float transformX = 2.206178f * 1.2f;
+		float transformY = 2.165933f * 1.2f;
 		int ran = Random.Range (0, 3);
 		int incorrect = 0;
 		for (int i=0; i<3; i++) {
