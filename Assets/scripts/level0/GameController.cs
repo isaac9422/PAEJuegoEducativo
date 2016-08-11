@@ -14,11 +14,7 @@ public class GameController : MonoBehaviour
 	void Start ()	{
 		if(SceneManager.GetActiveScene().name == "level0"){
 			textoNombre = GameObject.Find("TextName").GetComponent<Text>();
-			if(Util.getNombre() == ""){
-				textoNombre.text = "Player";
-			}else{
-				textoNombre.text = Util.getNombre();
-			}
+			textoNombre.text = Util.getNombre();
 		}
 	}
 

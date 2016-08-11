@@ -26,14 +26,13 @@ public class textController : MonoBehaviour
 
 		public void selectText ()
 		{
-				if (GameObject.FindGameObjectWithTag ("SelectedWord") != null) {
-						GameObject.FindGameObjectWithTag ("SelectedWord").GetComponent<textController> ().clear ();
-				}
-				if (tag != "CorrectoWord") {
-						tag = "SelectedWord";
-						this.GetComponent<TextMesh> ().color = new Color (0, 0.3f, 1, 1);
-				}
-
+			if (GameObject.FindGameObjectWithTag ("SelectedWord") != null) {
+				GameObject.FindGameObjectWithTag ("SelectedWord").GetComponent<textController> ().clear ();
+			}
+			if (tag != "CorrectoWord") {
+				tag = "SelectedWord";
+				this.GetComponent<TextMesh> ().color = new Color (0, 0.3f, 1, 1);
+			}
 		}
 
 		/// <summary>
@@ -41,8 +40,8 @@ public class textController : MonoBehaviour
 		/// </summary>
 		public void clear ()
 		{
-				tag = "Palabra";
-				gameObject.GetComponent<TextMesh> ().color = new Color (0, 0, 0);
+			tag = "Palabra";
+			gameObject.GetComponent<TextMesh> ().color = new Color (0, 0, 0);
 		}
 		
 		/// <summary>

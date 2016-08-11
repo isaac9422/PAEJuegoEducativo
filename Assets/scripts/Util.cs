@@ -67,7 +67,11 @@ public class Util : MonoBehaviour {
 	}
 	
 	public static string getNombre(){
-		return nombre;
+		if(nombre == ""){
+			return "Player";
+		}else{
+			return nombre;
+		}
 	}
 	
 	public static void setNombre(string name){
@@ -113,7 +117,7 @@ public class Util : MonoBehaviour {
 		
 		//Creation elemento for Fruit's category
 		elementos = new List<Elemento>();
-		elemento = new Elemento("Oranges","Naranja");
+		elemento = new Elemento("Orange","Naranja");
 		elementos.Add(elemento);
 		elemento = new Elemento("Apple","Manzana");
 		elementos.Add(elemento);
@@ -491,7 +495,7 @@ public class Util : MonoBehaviour {
 		elementos.Add(elemento);
 		elemento = new Elemento("White","Blanco");
 		elementos.Add(elemento);
-		elemento = new Elemento("Orange","Naranja");
+		elemento = new Elemento("Amber","Ámbar");
 		elementos.Add(elemento);
 		categorias[9].setElementos(elementos);
 		

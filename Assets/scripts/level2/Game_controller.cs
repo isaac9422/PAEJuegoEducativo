@@ -14,7 +14,7 @@ public class Game_controller : MonoBehaviour
 	public List<string> textCorrect;
 	public List<string> textIncorrect;
 	
-	public Sprite imageLoad;
+	private Sprite imageLoad;
 	public Image[] progress = new Image[3];
 	
 	public Categoria categoriaSelected;
@@ -22,7 +22,7 @@ public class Game_controller : MonoBehaviour
 	public List<Elemento> elementosCorrecto;
 	public List<Elemento> elementosIncorrecto;
 	public List<string> correctsAnswer;
-	public Text textoCategoria;
+	private Text textoCategoria;
 	public GameObject panelProgressBar;
 	public GameObject panelRewardPhase;
 	
@@ -30,7 +30,7 @@ public class Game_controller : MonoBehaviour
 	public TextMesh[] correctaMesh = new TextMesh[3];
 	public TextMesh[] palabraMesh = new TextMesh[6];
 	public bool matchIncorrect;
-	private int wrong = 1;
+	private int wrong = 0;
 	
 	// Use this for initialization
 	void Start ()
@@ -145,7 +145,7 @@ public class Game_controller : MonoBehaviour
 				if (textImage == textWord) {
 					string nombre = elementosCorrecto.Find(x => x.getNombre().Contains(textImage)).getNombreSpa();
 					string name = elementosCorrecto.Find(x => x.getNombre().Contains(textImage)).getNombre();
-					string s = "You're correct!, "+name+" translate as: "+nombre;
+					string s = "You're right!, "+name+" translates as: "+nombre;
 					s += "\nHas acertado, la traducción de "+name+" es: "+nombre;
 					PopupManager.setTextPopup(s);
 					PopupManager.showPopup(true);
@@ -176,35 +176,30 @@ public class Game_controller : MonoBehaviour
 
 	}
 
-	public void succes ()
-	{	
+	public void succes ()	{	
 		wrong = 0;
 		GameObject[] correctWords = GameObject.FindGameObjectsWithTag ("CorrectoWord");
 		foreach (GameObject correctWord in correctWords) {
-				correctWord.GetComponent<textController> ().sucess ();
-				
+			correctWord.GetComponent<textController> ().sucess ();
 		}
 		GameObject[] correctImages = GameObject.FindGameObjectsWithTag ("CorrectoImage");
 		foreach (GameObject correctImage in correctImages) {
-				correctImage.GetComponent<ImageController> ().sucess ();
+			correctImage.GetComponent<ImageController> ().sucess ();
 		}
 	}
 
-	public void clear ()
-	{		
+	public void clear ()	{		
 		GameObject[] correctWords = GameObject.FindGameObjectsWithTag ("CorrectoWord");
 		foreach (GameObject correctWord in correctWords) {
-				correctWord.GetComponent<textController> ().clear ();
-				
+			correctWord.GetComponent<textController> ().clear ();	
 		}
 		GameObject[] correctImages = GameObject.FindGameObjectsWithTag ("CorrectoImage");
 		foreach (GameObject correctImage in correctImages) {
-				correctImage.GetComponent<ImageController> ().clear ();
+			correctImage.GetComponent<ImageController> ().clear ();
 		}
 	}
 
-	public void addCorrectAnswer ()
-	{
+	public void addCorrectAnswer ()	{
 		if(correctMatches == 2){
 			correctMatches = 0;
 			if (correctAnswer == 2) {
@@ -283,6 +278,7 @@ public class Game_controller : MonoBehaviour
 				elementosIncorrecto.Add(elementos[i]);
 			}else{
 				textCorrect.Add(elementos[i].getNombre());
+				elementosCorrecto.Add(elementos[i]);
 			}	
 		}
 	}

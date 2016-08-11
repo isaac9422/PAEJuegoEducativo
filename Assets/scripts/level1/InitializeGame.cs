@@ -82,7 +82,7 @@ public class InitializeGame : MonoBehaviour
 
 	public void addCorrectAnswer ()
 	{
-		string s = "You're correct!, "+elementoCorrecto.getNombre()+" translate as: "+elementoCorrecto.getNombreSpa();
+		string s = "You're right!, "+elementoCorrecto.getNombre()+" translates as: "+elementoCorrecto.getNombreSpa();
 		s += "\nHas acertado, la traducción de "+elementoCorrecto.getNombre()+" es: "+elementoCorrecto.getNombreSpa();
 		PopupManager.setTextPopup(s);
 		PopupManager.showPopup(true);

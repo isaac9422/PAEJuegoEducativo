@@ -12,16 +12,19 @@ public class Game__Controller : MonoBehaviour
 	private List<String> premiosSpa;
 	private Text textoPremio;
 	private Text textoPremioSpa;
+	private Text textoMensajeGanaste;
 		
 	// Use this for initialization
 	void Start ()
 	{
 		textoPremio = GameObject.Find("TextReward").GetComponent<Text>();
 		textoPremioSpa = GameObject.Find("TextRewardSpa").GetComponent<Text>();
+		textoMensajeGanaste = GameObject.Find("Text").GetComponent<Text>();
 		defineReward();
 		int aleatorio = UnityEngine.Random.Range(0,premios.Count);
 		textoPremio.text = premios[aleatorio];
 		textoPremioSpa.text = premiosSpa[aleatorio];
+		textoMensajeGanaste.text = Util.getNombre()+" you win!!!\n¡"+Util.getNombre()+" ganaste!";
 		Image image = GameObject.Find("Image").GetComponent<Image>();
 		string ruta = "images/";
 		ruta += textoPremio.text;

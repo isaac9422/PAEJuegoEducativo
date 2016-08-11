@@ -9,7 +9,7 @@ public class InstructionController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		textMessage = GameObject.Find("TextMessage").GetComponent<Text>();
-		textMessage.text = Util.getMessage();
+		textMessage.text = Util.getMensaje();
 	}
 	
 	// Update is called once per frame
