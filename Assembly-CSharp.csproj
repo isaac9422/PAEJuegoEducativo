@@ -56,9 +56,9 @@
      <Compile Include="Assets\scripts\level2\Game_controller.cs" />
      <Compile Include="Assets\scripts\level2\ImageController.cs" />
      <Compile Include="Assets\scripts\level2\textController.cs" />
-     <Compile Include="Assets\scripts\level3\Game__Controller.cs" />
      <Compile Include="Assets\scripts\level3\Item.cs" />
      <Compile Include="Assets\scripts\level3\MoveItem.cs" />
+     <Compile Include="Assets\scripts\level3\PremioController.cs" />
      <Compile Include="Assets\scripts\level4\CategoriaController.cs" />
      <Compile Include="Assets\scripts\level5\ControlSelection.cs" />
      <Compile Include="Assets\scripts\level5\Gamecontroler.cs" />

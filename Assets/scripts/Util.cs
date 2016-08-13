@@ -467,6 +467,8 @@ public class Util : MonoBehaviour {
 		elementos.Add(elemento);
 		elemento = new Elemento("Drugstore","Droguería");
 		elementos.Add(elemento);
+		elemento = new Elemento("Train station","Estación de tren");
+		elementos.Add(elemento);
 		categorias[8].setElementos(elementos);
 		
 		//Creation elemento for Colour's category
