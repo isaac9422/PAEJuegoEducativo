@@ -103,5 +103,6 @@ public class PremioController : MonoBehaviour
 		}
 		panelSelect.gameObject.SetActive(false);
 		panelReward.gameObject.SetActive(true);
+		StartCoroutine(animationExit());
 	}
 }
